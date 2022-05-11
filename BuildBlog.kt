@@ -53,9 +53,10 @@ fun readBlogFiles() {
 
 fun createOutputDir() {
     val dir = File(outputDir)
-    if (!dir.exists()) {
-        dir.mkdirs()
-    }
+    // remove any existing files
+    dir.deleteRecursively()
+    // (re)create
+    dir.mkdirs()
 }
 
 fun generateBlogHtml() {
