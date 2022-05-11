@@ -1,0 +1,196 @@
+title=fighting html form bots
+--content
+<h1>fighting html form bots</h1>
+
+My site has <a href="http://janjongerden.nl/contact">a contact form</a>
+since the start, a couple of years ago. To my great surprise I have had almost no
+bots visiting and submitting the form with spam for the first few years. However, since a
+few months I get at least one spam message per day, with the usual offers of free sex
+and money. This is actually good news
+since it gives me the opportunity to experiment with ways to fight the bots and see what's most effective.
+<br/>
+<br/>
+
+<h3>classic approach - (re)Captcha</h3>
+
+A common way to prevent bots from submitting your forms is to include a field
+in your form only humans can enter correctly. Originally 'captcha' fields were popular,
+where the user has to copy a hard-to-read-text from an image in a form field. As the spam bots
+got smarter, the text became so hard to read, that it started preventing humans
+from being able to submit forms.
+<br/>
+<br/>
+More recently, the re-captcha became popular. This idea is nice, but google's tag line <em>'Easy on
+humans, hard on bots'</em> is not entirely true. Clicking endless
+series of traffic lights and fire hydrants is required before google feels you put in enough free AI training 
+work and you may move on to the form submission.
+<br/>
+<br/>
+
+<a href="https://xkcd.com/2228/">
+<img src="https://imgs.xkcd.com/comics/machine_learning_captcha.png" title="More likely: Click on all the pictures of people who appear disloyal to [name of company or government]" />
+</a>
+<br/>
+<br/>
+
+All in all not the ideal user experience, so time to find better ways to fend off the bots.
+
+<br/>
+<br/>
+
+<h3>first try - the hidden field</h3>
+
+An interesting idea I came across is to add an additional field to your form that only bots will fill out. To
+prevent humans from entering data, you just hide the field from view while keeping it in the HTML form. 
+One way to achieve this would be using an input marked as hidden: <code>&lt;input type="hidden"&gt;</code>. However,
+this seems to be too easy to detect for bots, so I went with a normal input, hidden by css:
+
+<pre><code class="prettyprint">  &lt;label for="nohuman" class="nohuman"&gt;Hidden (not for humans)&lt;/label&gt;
+  &lt;input type="text" name="nohuman" id="nohuman" class="nohuman" /&gt;</code></pre>
+
+Accompanied by this css to hide it from human view:
+
+<pre><code class="prettyprint">.nohuman {
+    display: none;
+}</code></pre>
+
+Once this setup is in place, the form submissions can be filtered relatively easily by discarding anything
+that includes the field <code>nohuman</code>.
+<br/>
+<br/>
+<strong>the result:</strong> After running this setup for a week, the form was submitted 12 times by spam bots, 
+6 times with and 6 times without the hidden field filled in. So some effect, but no cigar.
+<br/>
+<br/>
+
+<h3>second attempt - different hiding</h3>
+
+So it looks like the bots noticed the field was not shown. Perhaps a different way of hiding the field will help.
+Instead of not displaying the field at all, I move it away from the visible part of the screen:
+
+<pre><code class="prettyprint">.nohuman {
+    position: absolute;
+    left: -100px;
+}</code></pre>
+
+To prevent humans from accidentally tabbing into it, I set the attribute <code>tabindex</code> of the hidden input to 0. 
+<br/>
+<br/>
+<strong>the result:</strong> After running this for a few weeks, the results are basically the same as with attempt 1. 
+Some bots fill out the field, some choose to ignore it, so no way to filter on this.
+<br />
+<br />
+
+
+<h3>third time lucky?</h3>
+
+Okay, the nonintrusive attempts did not cut it. My next try is just asking the question out loud: "Are you a robot?"
+
+<pre><code class="prettyprint">&lt;label for="turingtest">Are you a robot?&lt;/label>
+&lt;input type="text" required="required" id="turingtest"
+  pattern="[ ]*(no|NO|No|nO)[ ]*" title="Humans can say 'no' here">
+</code></pre>
+
+This form field is marked as required and the only answer allowed is <em>No</em>. In a browser a user
+would be forced to answer correctly before submitting is possible.
+
+The most desirable outcome would be that the robots would honestly say yes, and be unable to submit the 
+form. More likely
+is that they would say nothing/anything and just submit the form, ignoring the <code>required</code> 
+attribute. 
+This would also be okay, as it gives a way to filter. The most interesting outcome would be the bots 
+actually 
+denying their robotness to be able to submit the form.
+
+<br/>
+<br/>
+
+<strong>the result:</strong> Interestingly, the amount of spam decreased by some 30%. My guess is that 
+some bots could not handle the <code>pattern</code> attribute and just gave up, although the drop could
+also just be a coincidence. 
+Of the remaining bots, the field mostly contained nothing or some random string. However, about 10% of
+the bots supplied the value 'no' even though the rest of the message did not look very human to me.
+
+<br/>
+<br/>
+
+<h3>attempt 4: no means no</h3>
+
+With the <em>"Are you a robot"</em> question I can filter out over 90% of the spam bots.
+Still, the smartest bots can somehow figure out how to supply the desired answer.
+In decreasing order of likelihood I would say one of these things happens: 
+
+<br/>
+<br/>
+
+<ol>
+<li>
+bot parses the regular expression and uses the pattern to supply the right answer
+</li>
+<li>
+bot recognizes the question, as this may be a common question in public html forms
+</li>
+<li>
+bot parses the <code>title</code> attribute which contains a hint for the right answer
+</li>
+<li>
+some human intervention is used to find the right answer
+</li>
+</ol>
+
+If the bots would parse the regex, one plausible implementation would be taking the first option
+of any 'choice' part of the regex. If this is the case, adding a fake option first could be
+a way to filter out even the cleverest of bots. Let's try to trick them like this: 
+
+<br/>
+<br/>
+
+<pre><code class="prettyprint">&lt;label for="turingtest">Are you a robot?&lt;/label>
+&lt;input type="text" required="required" id="turingtest"
+  pattern="[ ]*(R2D2|no|NO|No|nO)[ ]*" title="Humans can say 'no' here">
+</code></pre>
+
+<br/>
+
+<strong>the result:</strong> No luck here, in the weeks this test ran, no bot picked <em>R2D2</em>,
+and many kept answering <em>no</em> so the regex parsing is not likely (or even smarter than I feared)
+
+<br/>
+<br/>
+
+<h3>attempt 5: harder question</h3>
+
+With all the previous attempts failing as the bots somehow saw a way to guess the answer, let's make
+the question harder. By asking about the fluffiness of animals, it is unlikely the bots will come prepared.
+
+The new question should rule out the scenarios where the bot either recognizes the question or parses the 
+title attribute to get to the answer.
+
+<pre><code class="prettyprint">&lt;label for="turingtest">Which animal is the fluffiest: turtle, rabbit or snake? *&lt;/label>
+&lt;input type="text" required="required" pattern="[ ]*(jellyfish|turtle|rabbit|snake)[ ]*" title="Pick the fluffiest animal"/>
+</code></pre>
+
+<br/>
+
+<strong>the result:</strong> We have a winner! In more than a month, not a single bot managed to supply the right answer. Actually 
+none of the answers even matched the regex pattern as the field was either left empty, or contained some random characters. 
+So choosing an original question and checking the answer seems to do the job.
+
+<br/>
+<br/>
+
+<h3>conclusion</h3>
+
+For a simple website, a 'somewhat hard' question can filter out casually passing by bots. This approach
+probably won't work on more interesting, high traffic sites, as bots will be trained to recognize the question or will solicit 
+the help of humans to crack the problem.
+
+<br/>
+<br/>
+
+All in all, a static question is a great low-tech alternative for annoying traffic images clicking or captcha-madness.
+I can imagine that rotating a set of questions, or making the question dynamic in other ways can make this scheme even more 
+effective when needed.
+
+<br/>
+<br/>

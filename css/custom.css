@@ -1,0 +1,38 @@
+.menu {
+    font-size: 3.4rem;
+    width: 100%;
+    padding: 10px;
+//    border-bottom-style: solid;
+    border-bottom-color: #1eaedb;
+    margin-bottom: 20px;
+    padding-left: 36px;
+}
+.menu a {
+    text-decoration: none;
+}
+.nohuman {
+    position: absolute;
+    left:   -1000px;
+}
+body {
+    background-image: url("../img/paper.png");
+}
+.searchInput {
+    display: inline;
+    float: right;
+    padding-right: 20px;
+    margin-top: -10px;
+}
+.searchInput input {
+    padding-left: 30px;
+}
+pre {
+    /*  This fixes part of the background of a code block
+        being white when scrolling horizontally */
+    background: black;
+}
+
+code {
+    /* Fixes a white-ish ugly border that sometimes shows up in prettified code blocks */
+    border: none;
+}
