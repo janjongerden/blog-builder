@@ -2,10 +2,10 @@ title=fighting html form bots
 --content
 <h1>fighting html form bots</h1>
 
-My site has <a href="http://janjongerden.nl/contact">a contact form</a>
+My site has had <a href="contact.html">a contact form</a>
 since the start, a couple of years ago. To my great surprise I have had almost no
 bots visiting and submitting the form with spam for the first few years. However, since a
-few months I get at least one spam message per day, with the usual offers of free sex
+few months I get at least one spam message per day, with the usual offerings of free sex
 and money. This is actually good news
 since it gives me the opportunity to experiment with ways to fight the bots and see what's most effective.
 <br/>
@@ -84,7 +84,7 @@ Some bots fill out the field, some choose to ignore it, so no way to filter on t
 
 <h3>third time lucky?</h3>
 
-Okay, the nonintrusive attempts did not cut it. My next try is just asking the question out loud: "Are you a robot?"
+Okay, the non-intrusive attempts did not cut it. My next try is just asking the question out loud: "Are you a robot?"
 
 <pre><code class="prettyprint">&lt;label for="turingtest">Are you a robot?&lt;/label>
 &lt;input type="text" required="required" id="turingtest"
