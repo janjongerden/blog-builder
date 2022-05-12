@@ -1,8 +1,11 @@
+package src.main.kotlin
+
 import java.io.File
 import java.nio.file.Path
 import kotlin.io.path.name
 
 class Blog(private val path: Path) {
+
 
     private val props = HashMap<String, String>()
     private val contentHeader = "--content"
@@ -31,8 +34,12 @@ class Blog(private val path: Path) {
         if (!line.contains("=")) {
             throw IllegalStateException("Property line without '='.")
         }
-        val parts = line.split("=")
-        props[parts[0].trim()] = parts[1].trim()
+        val (key, value) = line.split("=")
+
+        if (!Props.knownProps.contains(key))
+            throw IllegalArgumentException("The property '$key' is unknown.")
+
+        props[key] = value.trim()
     }
 
     fun getName() : String {
@@ -49,5 +56,9 @@ class Blog(private val path: Path) {
 
     fun getProperty(tag: String): String {
         return props.getOrDefault(tag, "")
+    }
+
+    fun isListable(): Boolean {
+        return props.getOrDefault(Props.SHOW_IN_BLOG_LIST, "true").toBoolean()
     }
 }

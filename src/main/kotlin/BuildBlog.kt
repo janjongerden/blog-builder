@@ -1,3 +1,6 @@
+package src.main.kotlin
+
+import src.main.kotlin.Props.TITLE
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
@@ -5,12 +8,13 @@ import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.io.path.name
 
+private const val BLOG_LISTING:String = "\${blog_listing}"
 private const val outputDir: String = "/tmp/bloggin/"
 private val head = readFile("templates/head.template")
 private val bottom = readFile("templates/bottom.template")
 
 private val blogs = HashSet<Blog>()
-private val supportedTags = setOf("title")
+private val simpleTags = setOf(TITLE)
 
 fun main() {
 
@@ -63,23 +67,41 @@ fun generateBlogHtml() {
     blogs.forEach { blog ->
         val file = File(outputDir + blog.getHtmlFileName())
 
-        if (file.exists())
-            file.delete()
-
         file.createNewFile()
 
         file.appendText(enrichTemplate(head, blog))
-        file.appendText(blog.getContent())
+        file.appendText(enrichTemplate(blog.getContent(), blog))
         file.appendText(bottom)
     }
 }
 
 fun enrichTemplate(content: String, blog: Blog): String {
     var enriched = content
-    for (tag: String in supportedTags) {
+    for (tag: String in simpleTags) {
         enriched = enriched.replace("\${$tag}", blog.getProperty(tag))
     }
+    if (content.contains(BLOG_LISTING)) {
+        val listing = generateBlogList()
+        enriched = enriched.replace(BLOG_LISTING, listing)
+    }
     return enriched
+}
+
+fun generateBlogList(): String {
+    var html = "<ul>"
+    blogs.filter { blog -> blog.isListable() }
+        .forEach { blog ->
+            run {
+                html +=
+                    """
+                    <li>
+                        <a href="${blog.getHtmlFileName()}">${blog.getProperty(TITLE)}</a>
+                    </li>
+                    """
+            }
+        }
+    html += "</ul>"
+    return html
 }
 
 fun addBlog(path: Path) {
