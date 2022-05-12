@@ -1,0 +1,31 @@
+title=contact me
+show_in_blog_list=false
+--content
+<h1>Contact me</h1>
+
+
+You can contact me on <a href="https://nl.linkedin.com/in/janjongerden">linkedIn</a> or send a message below
+<br />
+<br />
+
+    <form method="post" action="https://janjongerden.nl/mail">
+        
+        <label for="name">Your name (optional)</label>
+        <input autofocus="autofocus" type="text" name="name" id="name"/>
+        <br />
+
+        <label for="email">Your email (optional)</label>
+        <input type="email" name="email" id="email" />
+        <br />
+
+        <label for="message">Message *</label>
+        <textarea required="required" class="u-full-width" name="message" id="message"></textarea>
+        <br />
+
+        <label for="turingtest">Which animal is the fluffiest: turtle, rabbit or snake? *</label>
+        <input type="text" name="turingtest" id="turingtest" required="required" pattern="[ ]*(jellyfish|turtle|rabbit|snake)[ ]*" 
+            title="To proof you are not a robot, please pick the animal you think is fluffiest" placeholder="giraffe">
+        <br />
+
+        <input type="submit" value="Send message">
+    </form>
