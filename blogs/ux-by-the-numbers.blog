@@ -1,0 +1,24 @@
+title=UX by the numbers</title>
+--content
+<h1>UX by the numbers</h1>
+
+I recently came across <a href="https://medium.com/@seandexter1/the-baymard-institute-a-glorious-evidence-based-trove-of-ux-best-practices-189d839b1176">
+this insightful medium.com article</a>, pointing me to the UX research company <a href="https://baymard.com/">Baymard</a>.
+They approach UX in a very scientific way and generously share many of their findings on their website. The 
+<a href="https://baymard.com/ecommerce-design-examples">examples section</a> points at do's and don'ts using real life
+examples and <a href="https://baymard.com/blog">their blog</a> has some nice long reads on specific topics.
+
+<br/>
+<br/>
+One article I especially enjoyed was <a href="https://baymard.com/blog/drop-down-usability"> the one on dropdowns</a>, in
+my experience an eternal source of usability issues, browser specific bugs and all other sorts of problems. 
+Main take-aways here: don't use dropdowns at all when you have less than 5 or more than 10 items and try to use the
+browser-native dropdowns unless you really need the additional styling freedom.
+
+<br/>
+<br/>
+I really like their scientific approach to UX/UI, giving me some good rules of thumb to create better
+user interfaces even without/before the input of a professional UX-er. In general this looks like a great way
+to convince back and front enders that some designs are objectively better than others.
+
+

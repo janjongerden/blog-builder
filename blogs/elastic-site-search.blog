@@ -1,0 +1,41 @@
+title=Adding elastic site search
+--content
+<h1>adding elastic site search</h1>
+
+One of the services Elastic provides is <a href="https://www.elastic.co/site-search/">a 
+site search service</a>. They claim this adds site search to your site in just 5 minutes, which
+is not exactly true, but is not too far off the truth either. I managed to get a working site search
+with a nice-ishly styled search box in 30 minutes, 15 minutes of which were waiting for the confirmation
+email to arrive and the elastic crawler to do her job.
+<br />
+<br />
+
+I decided to give it a try for this website. The steps are easy enough:
+<br />
+<br />
+<ul>
+<li>
+Sign up <a href="https://www.elastic.co/site-search/">here</a> and wait for confirmation email (2 minutes)
+</li>
+<li>
+Click link in email, and enter the url of your site. Now wait for Elastic's crawling to finish (15 minutes)
+</li>
+<li>
+Add some javascript and a search form to your site, as supplied by Elastic (2 minutes)
+</li>
+<li>
+Use my not-so-leet css skills to make the form look okayish in a regular browser as well as in the
+mobile version (10 minutes)
+</li>
+</ul>
+And that's it, site search indeed works pretty smoothly out-of-the-box. Without adding any additional
+javascript or html, the search works and looks like this:
+<br/>
+<img src="img/search_results.png" alt="site search results"/>
+<br/>
+The only bad news is that it's not for free, actually 
+<a href="https://www.elastic.co/site-search/service/pricing">the pricing</a> starts at $79 a month. 
+So unfortunately I will remove the search again after the 14 day trial period. Still a nice product
+and an easy way to add search to your site without any coding on your side.
+
+

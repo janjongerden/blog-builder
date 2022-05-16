@@ -1,0 +1,49 @@
+title=Changing the alt-tab behaviour in Ubuntu
+--content
+<h1>changing the alt-tab behaviour in Ubuntu</h1>
+
+In recent Ubuntu version, application switching using alt-tab by
+default groups all windows of the same type together, instead of cycling
+through the individual windows. This makes no sense!
+<br/>
+<br/>
+To fix the default behaviour you will need to install the compiz settings 
+manager and some additional plugins:
+
+<pre><code>$ sudo apt install compizconfig-settings-manager
+$ sudo apt install compiz-plugins
+$ sudo apt install compiz-plugins-extra
+</code></pre>
+
+Now start the settings manager either from the menu or the command line:
+
+<pre><code>$ ccsm
+</code></pre>
+
+In the settings manager go to <b>Desktop->Ubuntu Unity Plugin</b> and open the 
+<b>Switcher</b> tab. Here, disable the top two keys: 
+"Key to start the Switcher"
+and "Key to switch to the previous window in the Switcher" by clicking on
+their short-cut button and unchecking the enabled checkbox. This disables the
+default window switching behaviour.
+
+<br />
+<br />
+
+Now go back to the main window and go to <b>Window Management</b>. Check the 
+<b>Static Application Switcher</b> checkbox. This may cause a pop-up to appear
+ that
+warns you about conflicting key bindings, you can ignore this pop-up and go to
+the settings of the Static Application Switcher by clicking on it. Here set 
+the keyboard short-cuts for previous/next window to alt-tab and alt-shift-tab.
+Alternatively you can bind these short cuts to Next/Prev window (All windows)
+to also cycle through windows from other workspaces. The alt-tabbing will now 
+look like this:
+<br />
+<br />
+<img src="img/static-switcher.png" alt="static switcher in action"/>
+<br />
+<br />
+That's it, you can now enjoy sane alt-tabbing again!
+<br />
+<br />

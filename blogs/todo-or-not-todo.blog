@@ -1,0 +1,74 @@
+title=TODO, or not TODO
+--content
+<h1>TODO, or not TODO</h1>
+
+A <code>TODO</code> is the coding equivalent of a New Year's resolution: 
+nobody else believes you and in April even you have to admit you are still smoking,
+drinking and 10 kilograms overweight. What is a TODO then? 
+It is a comment in the source code stating part of 
+the code needs to be changed, removed or improved in the future. Typically the goal
+is to make the code 'prettier' or more correct than it is now.
+
+<pre><code class="prettyprint">public String getPrice(Product p) {
+    // TODO: return the price of the product
+    return "1.99";
+}
+
+// TODO: think of a better name
+private void doit() {
+    ...
+}
+</code></pre>
+
+<h3>Good intentions and the road to hell</h3>
+
+Well, you may ask, what is wrong with good intentions and the hope for a better future then?
+Everything is! The road to a messy code base and buggy software is paved with
+TODO's and good intentions. If the problem you signaled is serious enough to warrant a TODO,
+why don't you stand up and fix the bad code, find out how to prevent the hard-coded values or
+use the new API right away? Just writing a TODO is the passive-aggressive way to avoid a problem while
+soothing your inner perfectionist with the feeling you addressed the problem and can safely
+ignore it now.
+<br/>
+<br/>
+The majority of TODO's lead an unfulfilling life of confusing innocent passers-by, becoming
+less and less relevant or more and more confusing, until they are finally put out of their misery
+by a rewrite or the retirement of the software. Even the author of the TODO will ignore the
+little orphan, not having the time to address it, and also growing less sure the TODO is still
+valid, save to fix or at all necessary at the present time.
+<br />
+<br />
+
+<h3>If not TODO, then what?</h3>
+If a TODO would only take a few minutes to fix, do it now. Now it will really take you only a few
+minutes to fix, unlike a potential future fixer of the TODO who will have to reread the code, 
+reverify the possible solutions and all in all spends ten times as much time and effort to do so.
+<br />
+<br />
+On the other hand, the TODO could involve tons of work or may depend on code not written or 
+decisions not made yet. Now what would be more efficient: relying on a vague comment in your
+code or using your bug tracking system? If your roof is leaking, would you spray-paint "Please fix my
+roof" on a nearby wall in the hope someone will help you, or would you contact a handyman? 
+Once you have a ticket in your planning tool you can prioritize the issue and can
+easily look it up instead of only being reminded when stumbling upon the TODO by chance.
+<br />
+<br />
+If you think creating a ticket with a description of the problem or spending a few minutes
+right now is too much trouble, ask yourself how likely it is you will ever fix this.
+The issue is apparently not that serious and the TODO will never be done. Keep the code clean 
+and the TODO's and FIXME's out! A special case is the named TODO where the author adds his or 
+her name. This is even worse, now no one else will dare to face the problem.
+Instead, create a ticket and assign it to yourself.
+<br />
+<br />
+
+<h3>Exceptions proving the rule</h3>
+Okay, there may be a few exceptions. If you are working on a hobby project all alone and without
+a bug tracker, or on some other tiny piece of software, or if you are 100% sure you will do 
+the TODO within the next few hours or days, go ahead and create one. And do I do TODO? Yes! However,
+I try to only do it in the exceptional cases. Also, I will remorselessly delete any TODO
+showing weaknesses such as vague wording, being more than a year old or having an author no longer
+working at the company.
+
+<br />
+<br />

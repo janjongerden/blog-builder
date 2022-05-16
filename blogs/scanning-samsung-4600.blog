@@ -1,0 +1,32 @@
+title=Scanning with a samsung 4600 in ubuntu</title>
+--content
+<h1>scanning with a samsung 4600 in ubuntu</h1>
+
+My trusty old Samsung SCX-4600 scanner/printer refused to be recognized anymore by my laptop 
+running Ubuntu 18.04. Trying to initiate a scan failed both from SimpleScan, XSane and the 
+command line:
+     
+<pre><code>$ scanimage -L             
+
+No scanners were identified. If you were expecting something different,
+check that the scanner is plugged in, turned on and detected by the
+sane-find-scanner tool (if appropriate). Please read the documentation
+which came with this software (README, FAQ, manpages).
+</code></pre>
+
+A longish google quest led me to <a href="https://gitlab.gnome.org/GNOME/simple-scan/issues/22">
+a suggestion</a> that fixed it for me. The mysterious <code>SANE_USB_WORKAROUND</code> setting
+resolved the issue. The scanner is recognized again:
+
+<pre><code>$ export SANE_USB_WORKAROUND=1
+$ scanimage -L
+device `xerox_mfp:libusb:002:004' is a Samsung Samsung SCX-4600 Series multi-function peripheral
+</code></pre>
+
+And scanning works like a charm:
+
+<pre><code>$ scanimage --format=png > /tmp/some_document.png
+</code></pre>
+
+<br />
+<br />

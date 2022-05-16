@@ -1,0 +1,35 @@
+title=Resizing images on the command line
+--content
+<h1>Resizing images on the command line</h1>
+
+The quickest way I know of to resize an image on the command line is this
+
+<pre><code>$ mogrify -resize 50% image.jpg
+</code></pre>
+
+This will resize the image named "image.jpg" by 50%, maintaining aspect ratio and saving the 
+resized image to the same file. For this to work you will need to have 
+<a href="https://www.imagemagick.org/">ImageMagick</a> installed
+
+<pre><code>$ sudo apt install imagemagick
+</code></pre>
+
+You will now have some handy commands available such as <code>identify</code>, <code>convert</code>
+and <code>mogrify</code>. Mogrify is basically the same command as convert, but by default uses
+the original file as output. So these two commands are identical:
+
+<pre><code>$ convert image.png -resize 10% image.png
+$ mogrify -resize 10% image.png
+</code></pre>
+
+You can check the result of the operation using <code>identify</code> like this
+
+<pre><code>$ identify image.jpg 
+image.jpg JPEG 4160x2340 4160x2340+0+0 8-bit DirectClass 3.03MB 0.010u 0:00.020
+$ mogrify -resize 50% image.jpg 
+$ identify image.jpg           
+image.jpg JPEG 2080x1170 2080x1170+0+0 8-bit DirectClass 604KB 0.000u 0:00.000
+</code></pre>
+
+<br />
+<br />

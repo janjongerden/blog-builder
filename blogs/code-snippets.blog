@@ -1,0 +1,70 @@
+title=How to include code in your web page
+--content
+<h1>including code</h1>
+
+Including code in your html is actually quite simple. Wrap the code in a &lt;code&gt; 
+tag and you are done: <code>printf("hello\n");</code> Or for a code 
+block you can wrap the &lt;code&gt; in a &lt;pre&gt; to preserve formatting. 
+This would look like this:
+<pre><code>10 print "hello world!"
+20 goto 10
+</code></pre>
+
+This already looks quite decent with some simple css rules, but it would be
+even nicer with syntax highlighting, wouldn't it? This is where
+<a href="https://github.com/google/code-prettify">Google Code Prettify</a>
+steps in, a javascript library that searches for &lt;code&gt; tags in your
+page and beautifies the code inside by adding some extra markup. 
+To use it include this .js in your page:
+<br/>
+<br/>
+<code>&lt;script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sons-of-obsidian"&gt;&lt;/script&gt;
+</code>
+
+<br/>
+<br/>
+
+And add the class prettyprint to any code block you would like to be 
+beautified: <code>&lt;code class="prettyprint"&gt;</code> The prettifier
+will try to guess the language used and apply syntax highlighting
+accordingly. The same BASIC code fragment will now look like this:
+
+<pre><code class="prettyprint">10 print "hello world!"
+20 goto 10
+</code></pre>
+
+<h3>more options</h3>
+
+There are a couple of options to influence the looks of your code. For one 
+the prettifier only adds spans and classes to your code, the actual looks
+ depend on the skin. On this page the Sons of Obsidian skin is used,
+you can pick a different skin from 
+<a href="https://cdn.rawgit.com/google/code-prettify/master/styles/index.html">
+the gallery</a> by changing the url parameter 'skin' of the .js-include.
+
+<br />
+<br />
+
+Some other options are available by adding classes to you code section. Line
+numbers can be turned on by adding the linenums class: 
+<code> class="prettyprint linenums"</code>
+
+<pre><code class="prettyprint linenums">public class Hello {
+    private String name;
+    
+    public Hello(String name) {
+        this.name = name;
+    }
+
+    public void sayIt() {
+        System.out.println("Hello " + name);
+    }
+}
+</code></pre>
+
+
+For the full story have a look at <a href="https://github.com/google/code-prettify/blob/master/docs/getting_started.md">the getting started page</a>
+on github.
+<br />
+<br />
+</article>

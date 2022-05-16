@@ -1,0 +1,65 @@
+title=Removing a div with greasemonkey
+--content
+<h1>removing a div with greasemonkey</h1>
+
+Recently the news site <a href="http://nu.nl">nu.nl</a> decided to give users
+with adblockers in place a slight slap on the wrist by adding a banner on top
+of each page with a message urging them to turn off the adblocker for their
+site. Because I really don't like ads, but also don't like big banners on top
+of each page, I decided to block the banner.
+<br/>
+<br/>
+Greasemonkey looked like the right tool for the job. It is an add-on for
+ Firefox that allows a user to add custom behaviour to pages by creating
+scripts that run on page load and can modify the html, css or javascript on
+a page. For Chrome <a href="https://tampermonkey.net/">Tampermonkey</a> will
+do the same. To get Greasemonkey running, get it 
+<a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/">here</a>
+ and restart your browser. You will now see a little monkey head in the
+top right corner of your browser. You can install the script by opening
+<a href="div-remover.user.js">this link to the script</a> in your browser.
+Alternatively you can click on the arrow next to the monkey and
+choose "New user script...". Fill out the required fields and then paste the
+script below in the edit window (by default pasting is disabled in the editor
+so you may have to enable this first).
+
+<pre><code class="prettyprint">// ==UserScript==
+// @name        nu-div-remover
+// @namespace   janjongerden.nl
+// @description Removes the div that complains about adblockers
+// @include     http://www.nu.nl/*
+// @version     1
+// @grant       none
+// @noframes
+// ==/UserScript==
+
+document.getElementsByClassName('adblocker')[0].remove()</code></pre>
+
+The script is run on page load, for all urls starting with www.nu.nl and 
+will remove the offending div from the DOM. In this case the div cannot be
+targeted by id, so
+instead the first div with class matching 'adblocker' is removed. Of the 
+Greasemonkey annotations in the header the most interesting part is the
+<code>@include</code>, which states on which pages the script should run. 
+The <code>@noframes</code> annotation prevents the script from running on 
+each iframe within the page, making sure the script only runs once per url.
+<br />
+<br />
+
+<h3>the mobile story</h3>
+The story for mobile is a bit trickier: the Greasemonkey add-on is not yet
+available for Firefox on Android as far as I can tell. However, there is an 
+alternative add-on, the 
+<a href="https://addons.mozilla.org/en-us/firefox/addon/userunified-script-injector/">
+Unified Script Injector</a>. Even though the add-on 
+claims to have only limited support for Greasemonkey scripts, it did the job
+for this simple script. Once you have installed the add-on, you can add new
+user scripts by opening a url to such a script when the url ends with
+ "user.js". To install the div-remover script you can 
+<a href="div-remover.user.js">click here</a> and the script will be installed.
+For me this does the job, although the removing of the div is a bit slower 
+than in the desktop version, meaning I still see the banner for a second or 
+so.
+
+<br />
+<br />

@@ -1,0 +1,70 @@
+title=Sending mail from a contact form
+--content
+<h1>sending mail from a contact form</h1>
+
+How to send mail from a contact form without using PHP or CGI scripts nor
+putting your email address in plain text in the form? Whereas I am a Java carpenter everything looks
+like a Java nail to me, and I opted for a little Java service to handle the mail sending.
+
+My plan was having a plain HTML email form which posts to a url on my server where my little Java 
+REST service is waiting to forward any incoming mail messages. This way the form can stay simple
+and the service is the only one who knows about my email address.
+<br />
+<br />
+
+<h3>the spark service</h3>
+I have used <a href="http://sparkjava.com/">Spark</a> before and it seemed fit for the job. Spark is
+a very easy-to-use framework where a REST or web server is up and running in no time. Once the
+REST service is running, it waits on its port (default is 4567) for incoming requests, which it
+will forward to my email address and afterwards redirect the user either to a thank you page or an
+error page in case things go wrong.
+
+The default Java mailing framework is rather overengineered and scary, so I chose to use 
+<a href="https://commons.apache.org/proper/commons-email/">Apache Commons Mail</a> instead. 
+The little service was quite easy to put together, you can get it 
+<a href="https://github.com/janjongerden/mailsender">on github</a> if you want.
+<br/>
+<br/>
+
+<h3>configuring mail on the server</h3>
+As it turned out, this was the first time my server was handling email. Setting up mail on a linux machine
+is pretty easy. Just installing <a href="http://mailutils.org/">GNU Mailutils</a>, the selfproclaimed swiss army 
+knife of electronic mail handling, does the job:
+ 
+<pre><code>$ sudo apt-get install mailutils
+</code></pre>
+
+In the configuration tool you want to choose "Internet Site" as the setup type. For most other options 
+the defaults are okay and your mail should be ready to go.
+
+<br />
+<br />
+<h3>setting up lighttpd as a reverse proxy</h3>
+To hide the forwarding to a different port I set up a reverse proxy to let the Spark service listen to
+the regular /mail instead of :4567/mail. To let this work in lighttpd the <code>mod_proxy</code> module has to
+be enabled and a snippet like this added to the config:
+
+
+<pre><code>$HTTP["url"] =~ "^/mail" {
+        proxy.server = (
+                "" => (
+                        "sparkjava" => (
+                                "host" => "127.0.0.1",
+                                "port" => 4567,
+                                "fix-redirects" => 1
+                        )
+                )
+        )
+}
+</code></pre>
+
+Now all the pieces are in place and with an html form posting to /mail the picture is complete! On my site
+the end product looks a bit like this:
+<br />
+<br />
+
+<a href="contact.html">contact form</a>
+
+<br />
+<br />
+</article>

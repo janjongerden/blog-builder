@@ -1,0 +1,34 @@
+title=What's in a name?
+--content
+<h1>What's in a name? Or how to validate a name field in Java.</h1>
+
+Today I had to check a customer name input field for validity. And it is hard, very hard! The first thing 
+that popped to mind was <a href="https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/">
+this brilliant blog post</a> on assumptions we make about names. The article lists 40 common assumptions about names
+and all of these are false, one of which is that people have a name. However, it would be nice to have some info about
+the customer, so I do assume that customers have at least a first and last name.
+
+The simplest approach would be a regex that checks for upper/lower case letters:
+
+<pre><code class="prettyprint">/** too simple, alfabet + white space only */
+private boolean isValidNameNaive(String name) {
+    return name.matches("[a-zA-Z\\s]+");
+}</code></pre>
+
+However, this may cover your name, your mom's and that of two of your best friends, but that's about it. 
+International names such as 張三李四, Зеленський or Beyoncé won't pass. This is where the unicode letter catcher steps
+ in: <code>\p{L}</code>. We also wouldn't want to leave out Ed O'Neill or any Husband Name-Maiden Name, so let's add 
+<code>'-,.</code> to the mix just to be sure. This turns into:
+
+<pre><code class="prettyprint">/** better, unicode and some common non-letter-characters */
+private boolean isValidName(String name) {
+    return name.matches("[\\p{L}'\\-,.\\s]+");
+}</code></pre>
+
+
+And will match quite a lot of the names out there (first, last and prefixes) without leaving too much room for
+<a href="https://xkcd.com/327/">exploitation</a> or otherwise unwanted content. Still not enough to cover every name
+out there, but good enough for some cases, such as mine.
+
+<br />
+<br />
