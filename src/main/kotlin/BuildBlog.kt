@@ -90,6 +90,7 @@ fun enrichTemplate(content: String, blog: Blog): String {
 fun generateBlogList(): String {
     var html = "<ul>"
     blogs.filter { blog -> blog.isListable() }
+        .sortedByDescending { blog -> blog.getDate() }
         .forEach { blog ->
             run {
                 html +=

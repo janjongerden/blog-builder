@@ -1,4 +1,5 @@
 title=Sending mail from a contact form
+date=2020-04-01
 --content
 <h1>sending mail from a contact form</h1>
 
@@ -19,7 +20,7 @@ REST service is running, it waits on its port (default is 4567) for incoming req
 will forward to my email address and afterwards redirect the user either to a thank you page or an
 error page in case things go wrong.
 
-The default Java mailing framework is rather overengineered and scary, so I chose to use 
+The default Java mailing framework is rather over-engineered and scary, so I chose to use
 <a href="https://commons.apache.org/proper/commons-email/">Apache Commons Mail</a> instead. 
 The little service was quite easy to put together, you can get it 
 <a href="https://github.com/janjongerden/mailsender">on github</a> if you want.
@@ -28,7 +29,7 @@ The little service was quite easy to put together, you can get it
 
 <h3>configuring mail on the server</h3>
 As it turned out, this was the first time my server was handling email. Setting up mail on a linux machine
-is pretty easy. Just installing <a href="http://mailutils.org/">GNU Mailutils</a>, the selfproclaimed swiss army 
+is pretty easy. Just installing <a href="http://mailutils.org/">GNU Mailutils</a>, the self-proclaimed swiss army
 knife of electronic mail handling, does the job:
  
 <pre><code>$ sudo apt-get install mailutils

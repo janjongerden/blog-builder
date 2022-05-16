@@ -46,6 +46,10 @@ class Blog(private val path: Path) {
         return path.name
     }
 
+    fun getDate() : String {
+        return props.getOrDefault("date", "1970-01-01")
+    }
+
     fun getContent(): String {
         return blogContent
     }
