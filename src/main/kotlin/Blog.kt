@@ -1,5 +1,3 @@
-package src.main.kotlin
-
 import java.io.File
 import java.nio.file.Path
 import kotlin.io.path.name
