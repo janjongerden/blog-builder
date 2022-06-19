@@ -3,7 +3,7 @@ date=2020-04-01
 --content
 <h1>changing the alt-tab behaviour in Ubuntu</h1>
 
-In recent Ubuntu version, application switching using alt-tab by
+In recent Ubuntu versions, application switching using alt-tab by
 default groups all windows of the same type together, instead of cycling
 through the individual windows. This makes no sense!
 <br/>

@@ -54,6 +54,8 @@ fun readBlogFiles() {
 }
 
 fun createOutputDir() {
+    println("Using output directory '$outputDir'")
+
     val dir = File(outputDir)
     // remove any existing files
     dir.deleteRecursively()
