@@ -1,0 +1,59 @@
+title=Open GitHub when pushing changes
+date=2022-06-19
+--content
+<h1>Open your GitHub repo when pushing a new branch</h1>
+
+When I push a new branch to remote in git, 99% of the time my next step will be going to http://github.com,
+locating the repo, and opening a PR (pull request) for the changes. Wouldn't it be nice if the opening of the
+repo page would happen automagically? Yes, it would. It can save you multiple seconds every day!
+Okay, maybe not life-changing, but it sounds like a nice hack anyway, so here we go.
+<br/>
+<br/>
+
+<h3>Using a git hook</h3>
+
+I figured I could use a <a href="https://githooks.com/">git hook</a> to start up the browser and go to the
+right repo. It turns out there is no <code>post-push</code> hook, but for this purpose, a <code>pre-push</code>
+hook will also do the job. If you copy the bash script below to <code>&lt;repo-base&gt;/.git/hooks/pre-push</code> and
+make it executable, each time you push a new branch to remote, the GitHub page for the repo will open.
+There you'll see the changes and can open the PR.
+
+<pre><code class="prettyprint">#!/bin/bash
+# the hook is executed in the root of the repo, so assuming repo name is current dir
+REPO=$(basename "$(pwd)")
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+echo "Pushing to repo $REPO, branch $BRANCH"
+git show-branch "remotes/origin/$BRANCH"
+EXISTS=$?
+if [[ "$EXISTS" -eq 0 ]]
+then
+  echo "The branch $BRANCH already exists on remote, nothing to do"
+  exit 0
+fi
+
+echo "The branch $BRANCH does not exist on remote, opening Github page"
+URL="https://github.com/$REPO"
+firefox "$URL"
+</code></pre>
+
+The script checks if the branch already exists on remote. In case it does, this won't be the first commit,
+so probably a PR has already been created, and there's no need to open the repo page. Whether this makes
+sense or not will of course depend on your workflow.
+
+<br />
+<br />
+<h3>Applying the hook everywhere</h3>
+
+In case you like this hook, you will want to use it in every locally cloned repo. One way is to create
+a directory <code>~/.git-template/hooks</code> and put the git hook in there. Now make this your default
+git template source by running:
+
+<pre><code> $ git config --global init.templatedir '~/.git-template'
+</code></pre>
+
+From now on, each newly cloned repo will have this hook configured by default. For existing repos, you
+can run <code>git init</code> in the root of the repo. This will also copy the hooks from your template
+directory, but won't otherwise change the existing configuration of that repo.
+
+<br />
+<br />
