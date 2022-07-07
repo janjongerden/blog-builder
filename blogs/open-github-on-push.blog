@@ -1,5 +1,6 @@
 title=Open GitHub when pushing changes
 date=2022-06-19
+tags=git,hacks
 --content
 <h1>Open your GitHub repo when pushing a new branch</h1>
 
