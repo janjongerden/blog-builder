@@ -33,5 +33,5 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 }
 
 application {
-    mainClass = 'BuildBlogKt'
+    mainClass = 'src.main.kotlin.BuildBlogKt'
 }
