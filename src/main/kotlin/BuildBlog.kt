@@ -1,3 +1,7 @@
+package src.main.kotlin
+
+import Blog
+import Props.TAGS
 import Props.TITLE
 import java.io.File
 import java.nio.file.Files
@@ -7,6 +11,7 @@ import kotlin.io.path.isDirectory
 import kotlin.io.path.name
 
 private const val BLOG_LISTING:String = "\${blog_listing}"
+private const val ARTICLE_TAGS:String = "\${article_tags}"
 private const val outputDir: String = "/tmp/bloggin/"
 private val head = readFile("templates/head.template")
 private val bottom = readFile("templates/bottom.template")
@@ -71,7 +76,7 @@ fun generateBlogHtml() {
 
         file.appendText(enrichTemplate(head, blog))
         file.appendText(enrichTemplate(blog.getContent(), blog))
-        file.appendText(bottom)
+        file.appendText(enrichTemplate(bottom, blog))
     }
 }
 
@@ -83,6 +88,10 @@ fun enrichTemplate(content: String, blog: Blog): String {
     if (content.contains(BLOG_LISTING)) {
         val listing = generateBlogList()
         enriched = enriched.replace(BLOG_LISTING, listing)
+    }
+    if (content.contains(ARTICLE_TAGS)) {
+        val tags = generateTags(blog.getProperty(TAGS))
+        enriched = enriched.replace(ARTICLE_TAGS, tags)
     }
     return enriched
 }
@@ -102,6 +111,27 @@ fun generateBlogList(): String {
             }
         }
     html += "</ul>"
+    return html
+}
+
+fun generateTags(tags: String?): String {
+    if (tags.isNullOrBlank()) {
+        return ""
+    }
+    var html = "<div class=tags>"
+    tags.split(",")
+        .map { tag -> tag.trim() }
+        .forEach { tag ->
+            run {
+                html +=
+                    """
+                    <span class=tagItem>
+                        $tag
+                    </span>
+                    """
+            }
+        }
+    html += "</div> <br/>"
     return html
 }
 
