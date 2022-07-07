@@ -1,8 +1,7 @@
-title=Open GitHub when pushing changes
+title=Open GitHub when pushing a new branch
 date=2022-06-19
 tags=git,hacks
 --content
-<h1>Open your GitHub repo when pushing a new branch</h1>
 
 When I push a new branch to remote in git, 99% of the time my next step will be going to http://github.com,
 locating the repo, and opening a PR (pull request) for the changes. Wouldn't it be nice if the opening of the

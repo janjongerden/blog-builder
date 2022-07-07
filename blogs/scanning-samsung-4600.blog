@@ -2,8 +2,6 @@ title=Scanning with a samsung 4600 in ubuntu
 date=2020-05-14
 tags=hacks,linux,scanner
 --content
-<h1>scanning with a samsung 4600 in ubuntu</h1>
-
 My trusty old Samsung SCX-4600 scanner/printer refused to be recognized anymore by my laptop 
 running Ubuntu 18.04. Trying to initiate a scan failed both from SimpleScan, XSane and the 
 command line:

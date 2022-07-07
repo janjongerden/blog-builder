@@ -2,8 +2,6 @@ title=Fighting html form bots
 date=2020-08-28
 tags=blogging,hacks,bots
 --content
-<h1>fighting html form bots</h1>
-
 My site has had <a href="contact.html">a contact form</a>
 since the start, a couple of years ago. To my great surprise I have had almost no
 bots visiting and submitting the form with spam for the first few years. However, since a

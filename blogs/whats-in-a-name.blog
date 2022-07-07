@@ -1,9 +1,7 @@
-title=What's in a name?
+title=What's in a name? Or how to validate a name field in Java.
 date=2020-04-01
 tags=programming,java
 --content
-<h1>What's in a name? Or how to validate a name field in Java.</h1>
-
 Today I had to check a customer name input field for validity. And it is hard, very hard! The first thing 
 that popped to mind was <a href="https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/">
 this brilliant blog post</a> on assumptions we make about names. The article lists 40 common assumptions about names

@@ -2,8 +2,6 @@ title=Sending mail from a contact form
 date=2020-04-01
 tags=hacks,blogging,java
 --content
-<h1>sending mail from a contact form</h1>
-
 How to send mail from a contact form without using PHP or CGI scripts nor
 putting your email address in plain text in the form? Whereas I am a Java carpenter everything looks
 like a Java nail to me, and I opted for a little Java service to handle the mail sending.
