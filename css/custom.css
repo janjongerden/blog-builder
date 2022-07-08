@@ -45,3 +45,6 @@ code {
     font-weight: bold;
     margin-right: 4px;
 }
+input[type="submit"] {
+    background-color: #1EAEDB;
+}
