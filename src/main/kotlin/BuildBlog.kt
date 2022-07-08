@@ -12,12 +12,14 @@ import kotlin.io.path.name
 
 private const val BLOG_LISTING:String = "\${blog_listing}"
 private const val ARTICLE_TAGS:String = "\${article_tags}"
+private const val CSS_INCLUDES:String = "\${css_includes}"
 private const val outputDir: String = "/tmp/bloggin/"
 private val head = readFile("templates/head.template")
 private val bottom = readFile("templates/bottom.template")
 
 private val blogs = HashSet<Blog>()
 private val simpleTags = setOf(TITLE)
+private lateinit var cssFileNames:Collection<String>
 
 fun main() {
 
@@ -31,13 +33,15 @@ fun main() {
 }
 
 fun copyStaticFiles() {
-    copyStaticDir("css/")
-    copyStaticDir("img/")
+    cssFileNames = copyAndHashStaticDir("css/")
+    copyAndHashStaticDir("img/", false)
 }
 
-fun copyStaticDir(dirName: String) {
+fun copyAndHashStaticDir(dirName: String, hashNames: Boolean = true): Set<String> {
 
     val targetDirName = outputDir + dirName
+
+    val hashedNames = HashSet<String>()
 
     Files.walk(Paths.get(dirName))
             .filter { file -> !file.isDirectory() }
@@ -45,10 +49,17 @@ fun copyStaticDir(dirName: String) {
                 run {
                     println("copying '$file'")
                     val source = File(dirName + file.name)
-                    val target = File(targetDirName + file.fileName)
+                    val targetFileName = if (hashNames) targetDirName + hash(source) else targetDirName + source.name
+                    hashedNames.add(targetFileName)
+                    val target = File(targetFileName)
                     source.copyTo(target, overwrite = true)
                 }
             }
+    return hashedNames
+}
+
+fun hash(file: File): String {
+    return file.nameWithoutExtension + "_" + file.readBytes().hashCode() + "." + file.extension
 }
 
 fun readBlogFiles() {
@@ -93,6 +104,10 @@ fun enrichTemplate(content: String, blog: Blog): String {
         val tags = generateTags(blog.getProperty(TAGS))
         enriched = enriched.replace(ARTICLE_TAGS, tags)
     }
+    if (content.contains(CSS_INCLUDES)) {
+        val cssIncludes = generateCssIncludes()
+        enriched = enriched.replace(CSS_INCLUDES, cssIncludes)
+    }
     return enriched
 }
 
@@ -132,6 +147,20 @@ fun generateTags(tags: String?): String {
             }
         }
     html += "</div> <br/>"
+    return html
+}
+
+fun generateCssIncludes(): String {
+    var html = ""
+    cssFileNames
+        .forEach { css ->
+            run {
+                html +=
+                    """
+                        <link rel="stylesheet" href="$css">
+                    """
+            }
+        }
     return html
 }
 
