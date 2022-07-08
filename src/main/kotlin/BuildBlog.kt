@@ -1,6 +1,5 @@
 package src.main.kotlin
 
-import Blog
 import Props.TAGS
 import Props.TITLE
 import java.io.File
@@ -11,6 +10,7 @@ import kotlin.io.path.isDirectory
 import kotlin.io.path.name
 
 private const val BLOG_LISTING:String = "\${blog_listing}"
+private const val RELATED_BLOGS:String = "\${related_blogs}"
 private const val ARTICLE_TAGS:String = "\${article_tags}"
 private const val outputDir: String = "/tmp/bloggin/"
 private val head = readFile("templates/head.template")
@@ -102,12 +102,20 @@ fun enrichTemplate(content: String, blog: Blog): String {
         enriched = enriched.replace("\${$tag}", blog.getProperty(tag))
     }
     if (content.contains(BLOG_LISTING)) {
-        val listing = generateBlogList()
+        val listing = generateBlogList(blogs)
         enriched = enriched.replace(BLOG_LISTING, listing)
     }
     if (content.contains(ARTICLE_TAGS)) {
-        val tags = generateTags(blog.getProperty(TAGS))
+        val tags = generateTags(blog.getTags())
         enriched = enriched.replace(ARTICLE_TAGS, tags)
+    }
+    if (content.contains(RELATED_BLOGS)) {
+        val relatedBlogs = getRelatedBlogs(blog)
+        var relatedBlogList = ""
+        if (relatedBlogs.isNotEmpty()) {
+            relatedBlogList = "<span class=related>related blogs:</span><br/>" + generateBlogList(relatedBlogs)
+        }
+        enriched = enriched.replace(RELATED_BLOGS, relatedBlogList)
     }
     for (entry in cssFileNames) {
         enriched = enriched.replace(entry.key, entry.value)
@@ -115,7 +123,17 @@ fun enrichTemplate(content: String, blog: Blog): String {
     return enriched
 }
 
-fun generateBlogList(): String {
+fun getRelatedBlogs(blog: Blog): Collection<Blog> {
+    val tags = blog.getTags()
+    if (tags.isEmpty()) {
+        return emptyList()
+    }
+    return blogs.filter { b -> b != blog}
+        .filter { b -> b.getTags().intersect(tags).isNotEmpty() }
+        .take(3)
+}
+
+fun generateBlogList(blogs: Collection<Blog>): String {
     var html = "<ul>"
     blogs.filter { blog -> blog.isListable() }
         .sortedByDescending { blog -> blog.getDate() }
@@ -133,14 +151,12 @@ fun generateBlogList(): String {
     return html
 }
 
-fun generateTags(tags: String?): String {
-    if (tags.isNullOrBlank()) {
+fun generateTags(tags: Collection<String>): String {
+    if (tags.isEmpty()) {
         return ""
     }
     var html = "<div class=tags>"
-    tags.split(",")
-        .map { tag -> tag.trim() }
-        .forEach { tag ->
+    tags.forEach { tag ->
             run {
                 html +=
                     """

@@ -1,3 +1,6 @@
+package src.main.kotlin
+
+import Props
 import java.io.File
 import java.nio.file.Path
 import kotlin.io.path.name
@@ -8,6 +11,7 @@ class Blog(private val path: Path) {
     private val props = HashMap<String, String>()
     private val contentHeader = "--content"
     private var blogContent = ""
+    private var tags: Collection<String> = HashSet()
 
     init {
         var parsingProps = true
@@ -37,7 +41,11 @@ class Blog(private val path: Path) {
         if (!Props.knownProps.contains(key))
             throw IllegalArgumentException("The property '$key' is unknown.")
 
-        props[key] = value.trim()
+        if (key == "tags") {
+            tags = value.split(",").map { tag -> tag.trim() }
+        } else {
+            props[key] = value.trim()
+        }
     }
 
     fun getName() : String {
@@ -62,5 +70,9 @@ class Blog(private val path: Path) {
 
     fun isListable(): Boolean {
         return props.getOrDefault(Props.SHOW_IN_BLOG_LIST, "true").toBoolean()
+    }
+
+    fun getTags(): Collection<String> {
+        return tags
     }
 }

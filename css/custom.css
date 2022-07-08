@@ -48,3 +48,7 @@ code {
 input[type="submit"] {
     background-color: #1EAEDB;
 }
+.related {
+    font-weight: bold;
+    font-style: italic;
+}
