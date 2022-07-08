@@ -11,7 +11,7 @@ class Blog(private val path: Path) {
     private val props = HashMap<String, String>()
     private val contentHeader = "--content"
     private var blogContent = ""
-    private var tags: Collection<String> = HashSet()
+    private var tags: Set<String> = HashSet()
 
     init {
         var parsingProps = true
@@ -42,7 +42,7 @@ class Blog(private val path: Path) {
             throw IllegalArgumentException("The property '$key' is unknown.")
 
         if (key == "tags") {
-            tags = value.split(",").map { tag -> tag.trim() }
+            tags = value.split(",").map { tag -> tag.trim() }.toSet()
         } else {
             props[key] = value.trim()
         }
@@ -72,7 +72,7 @@ class Blog(private val path: Path) {
         return props.getOrDefault(Props.SHOW_IN_BLOG_LIST, "true").toBoolean()
     }
 
-    fun getTags(): Collection<String> {
+    fun getTags(): Set<String> {
         return tags
     }
 }

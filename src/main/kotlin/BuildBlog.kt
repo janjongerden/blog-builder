@@ -1,6 +1,5 @@
 package src.main.kotlin
 
-import Props.TAGS
 import Props.TITLE
 import java.io.File
 import java.nio.file.Files
@@ -8,6 +7,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.io.path.isDirectory
 import kotlin.io.path.name
+import kotlin.math.abs
 
 private const val BLOG_LISTING:String = "\${blog_listing}"
 private const val RELATED_BLOGS:String = "\${related_blogs}"
@@ -64,7 +64,8 @@ fun copyAndHashStaticDir(dirName: String, hashNames: Boolean = true): Map<String
 }
 
 fun hash(file: File): String {
-    return file.nameWithoutExtension + "_" + file.readBytes().hashCode() + "." + file.extension
+    val hash = abs(file.readBytes().contentHashCode())
+    return file.nameWithoutExtension + "_" + hash + "." + file.extension
 }
 
 fun readBlogFiles() {

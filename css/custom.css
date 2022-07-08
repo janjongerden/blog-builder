@@ -32,7 +32,6 @@ pre {
         being white when scrolling horizontally */
     background: black;
 }
-
 code {
     /* Fixes a white-ish ugly border that sometimes shows up in prettified code blocks */
     border: none;
