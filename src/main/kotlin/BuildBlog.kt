@@ -49,8 +49,14 @@ fun copyAndHashStaticDir(dirName: String, hashNames: Boolean = true): Set<String
                 run {
                     println("copying '$file'")
                     val source = File(dirName + file.name)
-                    val targetFileName = if (hashNames) targetDirName + hash(source) else targetDirName + source.name
-                    hashedNames.add(targetFileName)
+                    val targetFileName:String
+                    if (hashNames) {
+                        val hashedName = hash(source)
+                        targetFileName = targetDirName + hashedName
+                        hashedNames.add(dirName + hashedName)
+                    } else {
+                        targetFileName = targetDirName + source.name
+                    }
                     val target = File(targetFileName)
                     source.copyTo(target, overwrite = true)
                 }
