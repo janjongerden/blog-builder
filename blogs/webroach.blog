@@ -25,7 +25,7 @@ my limited Javascript skills and some hacking, I came up with webroach:
 <br />
 
 <figure>
-    <a href="https://github.com/janjongerden/webroach"><img src="img/webroach_repo.png" alt="The webroach git repository" style="width: 60%;" /></a>
+    <a href="https://github.com/janjongerden/webroach"><img src="img/webroach_repo.png" alt="The webroach git repository" style="width: 80%;" /></a>
     <figcaption>The webroach GitHub repository.</figcaption>
 </figure>
 
@@ -58,7 +58,7 @@ To demonstrate that effect, I added a bunch of slightly related images to this p
 
 I was looking for a way to pack everything into a single file for easy of roachifying a webpage.
 Here I discovered that it's possible to specify an html image in binary form! When you use
-<code>&lt;img src="data:image/png;base64,[the base64 encoded image data]></code>, you can include
+<strong>&lt;img src="data:image/png;base64,[the base64 encoded image data]></strong>, you can include
 an image directly in your html or js. When the roaches move direction, they get assigned a new
 image for that direction, by changing the src attribute.
 
@@ -69,3 +69,6 @@ Another thing I learned was how to detect if one html element is overlapping wit
 The basic idea is to use the elements' <code>getBoundingClientRect()</code> properties and
 check the coordinates. Additionally, I check the padding properties, as I noticed roaches
 tended to hide in plain sight in the image padding.
+
+<br/>
+<br/>
