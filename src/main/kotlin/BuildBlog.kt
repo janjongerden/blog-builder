@@ -12,6 +12,7 @@ import kotlin.math.abs
 private const val BLOG_LISTING:String = "\${blog_listing}"
 private const val RELATED_BLOGS:String = "\${related_blogs}"
 private const val ARTICLE_TAGS:String = "\${article_tags}"
+private const val ROACH_JS:String = "\${roach_js}"
 private const val outputDir: String = "/tmp/bloggin/"
 private val head = readFile("templates/head.template")
 private val bottom = readFile("templates/bottom.template")
@@ -34,6 +35,7 @@ fun main() {
 fun copyStaticFiles() {
     cssFileNames = copyAndHashStaticDir("css/")
     copyAndHashStaticDir("img/", false)
+    copyAndHashStaticDir("js/", false)
 }
 
 fun copyAndHashStaticDir(dirName: String, hashNames: Boolean = true): Map<String, String> {
@@ -117,6 +119,21 @@ fun enrichTemplate(content: String, blog: Blog): String {
             relatedBlogList = "<span class=related>related blogs:</span><br/>" + generateBlogList(relatedBlogs)
         }
         enriched = enriched.replace(RELATED_BLOGS, relatedBlogList)
+    }
+    if (content.contains(ROACH_JS)) {
+        val roachCount = blog.getRoachCount()
+        var roachJs = ""
+        if (roachCount > 0) {
+            roachJs = """
+                <script src="js/roaches.js"></script>
+                <script>
+                    window.onload = () => {
+                        roachesAreGo($roachCount);
+                    };
+                </script>
+                    """
+        }
+        enriched = enriched.replace(ROACH_JS, roachJs)
     }
     for (entry in cssFileNames) {
         enriched = enriched.replace(entry.key, entry.value)

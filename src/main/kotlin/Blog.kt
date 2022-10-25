@@ -75,4 +75,8 @@ class Blog(private val path: Path) {
     fun getTags(): Set<String> {
         return tags
     }
+
+    fun getRoachCount(): Int {
+        return props.getOrDefault(Props.ROACHES, "0").toInt()
+    }
 }

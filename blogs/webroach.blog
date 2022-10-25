@@ -1,0 +1,71 @@
+title=Webroach, xroach for webpages
+date=2022-10-25
+tags=hacks,html,linux,cockroaches
+roaches=7
+--content
+One of my all-time favorite linux/unix applications is 'xroach', which lets a flock of cockroaches
+run around on your desktop, until they find a window to hide behind.
+It fits in a bigger suite of playful 90ties linux tools, such as xeyes, xsnow, xbill, and the likes.
+
+Once standard in every linux install, xroach has slowly disappeared from distros over the
+years. On the internet, some traces can be found, such as <a href="https://github.com/interkosmos/xroach">
+this modernized version</a> by a fellow enthusiast.
+
+<figure>
+    <img src="img/roaches_desktop.png" alt="desktop with roaches" style="width: 80%;" />
+    <figcaption>Roaches on a desktop, atypically walking <em>on top</em> of the windows.</figcaption>
+</figure>
+
+<h3>moving to the web</h3>
+
+I decided it was time to bring back xroach, but this time for the web. Using the original cockroach images,
+my limited Javascript skills and some hacking, I came up with webroach:
+
+<br />
+<br />
+
+<figure>
+    <a href="https://github.com/janjongerden/webroach"><img src="img/webroach_repo.png" alt="The webroach git repository" style="width: 60%;" /></a>
+    <figcaption>The webroach GitHub repository.</figcaption>
+</figure>
+
+
+It is <a href="https://github.com/janjongerden/webroach/blob/main/roaches.js">a single Javascript file</a>, which you
+can add to your webpage to let roaches run around until they find a place to hide. You can activate the roaches by
+including these lines in the <code>&lt;head></code> section of your html:
+
+<pre><code class="prettyprint">
+&lt;script src="roaches.js">&lt;/script>
+    &lt;script>
+        window.onload = () => {
+            roachesAreGo(10);
+        };
+    &lt;/script>
+</code></pre>
+
+This will get the roaches started, the argument of <code>roachesAreGo</code> is the initial number of roaches.
+They'll hide behind images if they can find them, and will start moving again once the page scrolls up or down.
+To demonstrate that effect, I added a bunch of slightly related images to this page.
+
+<figure>
+    <img src="img/cockroach.jpg" alt="A big cockroach" style="width: 80%;" />
+    <figcaption>This one looks a lot like the fellow that spent a night in my sleeping bag in Mangalore.</figcaption>
+</figure>
+
+
+
+<h3>technical implementation details</h3>
+
+I was looking for a way to pack everything into a single file for easy of roachifying a webpage.
+Here I discovered that it's possible to specify an html image in binary form! When you use
+<code>&lt;img src="data:image/png;base64,[the base64 encoded image data]></code>, you can include
+an image directly in your html or js. When the roaches move direction, they get assigned a new
+image for that direction, by changing the src attribute.
+
+<br/>
+<br/>
+
+Another thing I learned was how to detect if one html element is overlapping with another one.
+The basic idea is to use the elements' <code>getBoundingClientRect()</code> properties and
+check the coordinates. Additionally, I check the padding properties, as I noticed roaches
+tended to hide in plain sight in the image padding.
