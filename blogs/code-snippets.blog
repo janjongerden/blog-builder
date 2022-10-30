@@ -25,7 +25,7 @@ To use it include this .js in your page:
 <br/>
 <br/>
 
-And add the class prettyprint to any code block you would like to be 
+Now add the class <code>prettyprint</code> to any code block you would like to be
 beautified: <code>&lt;code class="prettyprint"&gt;</code> The prettifier
 will try to guess the language used and apply syntax highlighting
 accordingly. The same BASIC code fragment will now look like this:
@@ -40,14 +40,14 @@ There are a couple of options to influence the looks of your code. For one
 the prettifier only adds spans and classes to your code, the actual looks
  depend on the skin. On this page the Sons of Obsidian skin is used,
 you can pick a different skin from 
-<a href="https://cdn.rawgit.com/google/code-prettify/master/styles/index.html">
+<a href="https://raw.githack.com/google/code-prettify/master/styles/index.html">
 the gallery</a> by changing the url parameter 'skin' of the .js-include.
 
 <br />
 <br />
 
 Some other options are available by adding classes to you code section. Line
-numbers can be turned on by adding the linenums class: 
+numbers can be turned on by adding the <code>linenums</code> class:
 <code> class="prettyprint linenums"</code>
 
 <pre><code class="prettyprint linenums">public class Hello {
@@ -65,6 +65,18 @@ numbers can be turned on by adding the linenums class:
 
 
 For the full story have a look at <a href="https://github.com/google/code-prettify/blob/master/docs/getting_started.md">the getting started page</a>
-on github.
+on GitHub.
+
+<br />
+<br />
+
+<strong>Update October 2022:</strong> the code-prettify GitHub project has since been archived, meaning it won't receive updates and could
+eventually disappear altogether. Additionally, Google doesn't host the javascript file anymore, and the cdn site
+<a href="https://cdn.rawgit.com">rawgit.com</a> which is now recommended in
+<a href="https://github.com/googlearchive/code-prettify/blob/master/README.md">the project's README</a> is EOL,
+so if you want to use this on your website, I'd recommend to host your own copy, or find another cdn that hosts it.
+You could also try out an alternative project that is still under active development, for example
+<a href="https://github.com/highlightjs/highlight.js">highlight.js</a> (haven't tried this library myself).
+
 <br />
 <br />
