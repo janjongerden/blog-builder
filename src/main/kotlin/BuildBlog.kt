@@ -20,6 +20,7 @@ private val bottom = readFile("templates/bottom.template")
 private val blogs = HashSet<Blog>()
 private val simpleTags = setOf(TITLE)
 private lateinit var cssFileNames:Map<String, String>
+private lateinit var jsFileNames:Map<String, String>
 
 fun main() {
 
@@ -35,7 +36,7 @@ fun main() {
 fun copyStaticFiles() {
     cssFileNames = copyAndHashStaticDir("css/")
     copyAndHashStaticDir("img/", false)
-    copyAndHashStaticDir("js/", false)
+    jsFileNames = copyAndHashStaticDir("js/")
 }
 
 fun copyAndHashStaticDir(dirName: String, hashNames: Boolean = true): Map<String, String> {
@@ -136,6 +137,9 @@ fun enrichTemplate(content: String, blog: Blog): String {
         enriched = enriched.replace(ROACH_JS, roachJs)
     }
     for (entry in cssFileNames) {
+        enriched = enriched.replace(entry.key, entry.value)
+    }
+    for (entry in jsFileNames) {
         enriched = enriched.replace(entry.key, entry.value)
     }
     return enriched
