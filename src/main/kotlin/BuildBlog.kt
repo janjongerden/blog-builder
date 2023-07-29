@@ -157,7 +157,7 @@ fun getRelatedBlogs(blog: Blog): Collection<Blog> {
 }
 
 fun generateBlogList(blogs: Collection<Blog>): String {
-    var html = "<ul>"
+    var html = "<ul class=blogList>"
     blogs.filter { blog -> blog.isListable() }
         .sortedByDescending { blog -> blog.getDate() }
         .forEach { blog ->
@@ -166,6 +166,7 @@ fun generateBlogList(blogs: Collection<Blog>): String {
                     """
                     <li>
                         <a href="${blog.getHtmlFileName()}">${blog.getProperty(TITLE)}</a>
+                        <div class=articleDescription>${blog.getProperty(DESCRIPTION)}</div>
                     </li>
                     """
             }

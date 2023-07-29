@@ -1,10 +1,10 @@
 title=Fighting html form bots
 date=2020-08-28
 tags=blogging,hacks,bots
-description=A tale of fighting spam bots using my contact form. A series of experiments led to a simple solution to get rid of the bots.
+description=A tale of fighting spam bots abusing my contact form. A series of experiments led to a simple solution to stop the bots.
 --content
 My site has had <a href="contact.html">a contact form</a>
-since the start, a couple of years ago. To my great surprise I have had almost no
+since the start of this website, a couple of years ago. To my great surprise I have had almost no
 bots visiting and submitting the form with spam for the first few years. However, since a
 few months I get at least one spam message per day, with the usual offerings of free sex
 and money. This is actually good news

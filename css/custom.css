@@ -51,3 +51,10 @@ input[type="submit"] {
     font-weight: bold;
     font-style: italic;
 }
+.blogList {
+    max-width: 500px;
+}
+.articleDescription {
+    padding: 10px 0 0 20px;
+    font-style: italic;
+}
