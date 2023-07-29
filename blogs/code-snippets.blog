@@ -1,6 +1,7 @@
 title=How to include code in your web page
 date=2020-04-01
 tags=html,css
+description=Short howto on presenting code snippets in an HTML page.
 --content
 
 Including code in your html is actually quite simple. Wrap the code in a &lt;code&gt; 

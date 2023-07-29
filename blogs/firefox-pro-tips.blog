@@ -1,6 +1,7 @@
 title=Firefox pro tips
 date=2020-04-01
 tags=firefox
+description=A list of some Firefox tips and tricks I find useful to remember.
 --content
 This is a random list of Firefox pro tips and configuration tricks I ran across and don't
 want to forget.
@@ -12,7 +13,7 @@ want to forget.
 <li>
 Some sites use js to turn off pasting into form fields such as password fields. To fix this
 go to about:config and search for the key <strong>dom.event.clipboardevents.enabled</strong>, 
-change it's value to false and you are good to go (<a href="http://digiwonk.wonderhowto.com/how-to/re-enable-copy-paste-annoying-sites-block-0155910/">full story</a>)
+change its value to false, and you are good to go (<a href="http://digiwonk.wonderhowto.com/how-to/re-enable-copy-paste-annoying-sites-block-0155910/">full story</a>)
 </li>
 <li>
 The <a href="https://addons.mozilla.org/en-US/firefox/addon/clear-fields/">Clear Fields</a> plugin.

@@ -1,6 +1,7 @@
 title=Open GitHub when pushing a new branch
 date=2022-06-19
 tags=git,hacks
+description=A trick to quickly create a pull request when pushing a new branch to remote by opening the repo in your browser.
 --content
 
 When I push a new branch to remote in git, 99% of the time my next step will be going to http://github.com,

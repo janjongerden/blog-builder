@@ -1,6 +1,7 @@
 title=Changing the alt-tab behaviour in Ubuntu
 date=2020-04-01
 tags=linux,hacks
+description=How to change alt-tabbing behavior in Ubuntu to something more useful than the default.
 --content
 
 In recent Ubuntu versions, application switching using alt-tab by

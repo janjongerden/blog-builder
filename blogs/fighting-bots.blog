@@ -1,6 +1,7 @@
 title=Fighting html form bots
 date=2020-08-28
 tags=blogging,hacks,bots
+description=A tale of fighting spam bots using my contact form. A series of experiments led to a simple solution to get rid of the bots.
 --content
 My site has had <a href="contact.html">a contact form</a>
 since the start, a couple of years ago. To my great surprise I have had almost no
@@ -20,15 +21,15 @@ got smarter, the text became so hard to read, that it started preventing humans
 from being able to submit forms.
 <br/>
 <br/>
-More recently, the re-captcha became popular. This idea is nice, but google's tag line <em>'Easy on
+More recently, the re-captcha became popular. This idea is nice, but Google's tag line <em>'Easy on
 humans, hard on bots'</em> is not entirely true. Clicking endless
-series of traffic lights and fire hydrants is required before google feels you put in enough free AI training 
-work and you may move on to the form submission.
+series of traffic lights and fire hydrants is required before Google feels you put in enough free AI training
+work, and you may move on to the form submission.
 <br/>
 <br/>
 
 <a href="https://xkcd.com/2228/">
-<img src="https://imgs.xkcd.com/comics/machine_learning_captcha.png" title="More likely: Click on all the pictures of people who appear disloyal to [name of company or government]" />
+<img src="https://imgs.xkcd.com/comics/machine_learning_captcha.png" title="More likely: Click on all the pictures of people who appear disloyal to [name of company or government]" alt="Machine Learning Captcha" />
 </a>
 <br/>
 <br/>
@@ -40,7 +41,7 @@ All in all not the ideal user experience, so time to find better ways to fend of
 
 <h3>first try - the hidden field</h3>
 
-An interesting idea I came across is to add an additional field to your form that only bots will fill out. To
+An interesting idea I came across is to add another field to your form that only bots will fill out. To
 prevent humans from entering data, you just hide the field from view while keeping it in the HTML form. 
 One way to achieve this would be using an input marked as hidden: <code>&lt;input type="hidden"&gt;</code>. However,
 this seems to be too easy to detect for bots, so I went with a normal input, hidden by css:

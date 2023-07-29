@@ -1,6 +1,7 @@
 title=Removing a div with Greasemonkey
 date=2020-04-01
 tags=html,hacks
+description=How to remove an unwanted HTML element from a webpage using Greasemonkey.
 --content
 
 Recently the news site <a href="http://nu.nl">nu.nl</a> decided to give users
@@ -21,7 +22,7 @@ top right corner of your browser. You can install the script by opening
 <a href="div-remover.user.js">this link to the script</a> in your browser.
 Alternatively you can click on the arrow next to the monkey and
 choose "New user script...". Fill out the required fields and then paste the
-script below in the edit window (by default pasting is disabled in the editor
+script below in the edit window (by default pasting is disabled in the editor,
 so you may have to enable this first).
 
 <pre><code class="prettyprint">// ==UserScript==
@@ -55,7 +56,7 @@ alternative add-on, the
 Unified Script Injector</a>. Even though the add-on 
 claims to have only limited support for Greasemonkey scripts, it did the job
 for this simple script. Once you have installed the add-on, you can add new
-user scripts by opening a url to such a script when the url ends with
+user scripts by opening a URL to such a script when the url ends with
  "user.js". To install the div-remover script you can 
 <a href="div-remover.user.js">click here</a> and the script will be installed.
 For me this does the job, although the removing of the div is a bit slower 

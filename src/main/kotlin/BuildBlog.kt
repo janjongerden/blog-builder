@@ -1,5 +1,6 @@
 package src.main.kotlin
 
+import Props.DESCRIPTION
 import Props.TITLE
 import java.io.File
 import java.nio.file.Files
@@ -18,7 +19,7 @@ private val head = readFile("templates/head.template")
 private val bottom = readFile("templates/bottom.template")
 
 private val blogs = HashSet<Blog>()
-private val simpleTags = setOf(TITLE)
+private val simpleTags = setOf(TITLE, DESCRIPTION)
 private lateinit var cssFileNames:Map<String, String>
 private lateinit var jsFileNames:Map<String, String>
 

@@ -1,6 +1,7 @@
 title=TODO, or not TODO
 date=2020-04-01
 tags=programming
+description=Rant about the uselessness of todo comments in source code.
 --content
 
 A <code>TODO</code> is the coding equivalent of a New Year's resolution: 

@@ -1,6 +1,7 @@
 title=Resizing images on the command line
 date=2020-04-01
 tags=hacks,images
+description=How to quickly resize an image on the linux command line using convert/ImageMagick.
 --content
 
 The quickest way I know of to resize an image on the command line is this

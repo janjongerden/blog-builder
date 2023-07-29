@@ -2,6 +2,7 @@ title=Adding elastic site search
 date=2020-04-04
 tags=blogging,search
 roaches=1
+description=My experiences trying out elastic site search on my blog.
 --content
 One of the services Elastic provides is <a href="https://www.elastic.co/site-search/">a 
 site search service</a>. They claim this adds site search to your site in just 5 minutes, which

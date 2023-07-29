@@ -4,6 +4,7 @@ object Props {
     const val DATE = "date"
     const val TAGS = "tags"
     const val ROACHES = "roaches"
+    const val DESCRIPTION = "description"
 
-    val knownProps = setOf(SHOW_IN_BLOG_LIST, TITLE, DATE, TAGS, ROACHES)
+    val knownProps = setOf(SHOW_IN_BLOG_LIST, TITLE, DATE, TAGS, ROACHES, DESCRIPTION)
 }

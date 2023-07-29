@@ -1,19 +1,20 @@
 title=Sending mail from a contact form
 date=2020-04-01
 tags=hacks,blogging,java
+description=The way I set up my contact form to send emails in a way that does not reveal my email address to the world.
 --content
 How to send mail from a contact form without using PHP or CGI scripts nor
 putting your email address in plain text in the form? Whereas I am a Java carpenter everything looks
 like a Java nail to me, and I opted for a little Java service to handle the mail sending.
 
-My plan was having a plain HTML email form which posts to a url on my server where my little Java 
+My plan was having a plain HTML email form which posts to a URL on my server where my little Java
 REST service is waiting to forward any incoming mail messages. This way the form can stay simple
 and the service is the only one who knows about my email address.
 <br />
 <br />
 
 <h3>the spark service</h3>
-I have used <a href="http://sparkjava.com/">Spark</a> before and it seemed fit for the job. Spark is
+I have used <a href="http://sparkjava.com/">Spark</a> before, and it seemed fit for the job. Spark is
 a very easy-to-use framework where a REST or web server is up and running in no time. Once the
 REST service is running, it waits on its port (default is 4567) for incoming requests, which it
 will forward to my email address and afterwards redirect the user either to a thank you page or an
@@ -22,7 +23,7 @@ error page in case things go wrong.
 The default Java mailing framework is rather over-engineered and scary, so I chose to use
 <a href="https://commons.apache.org/proper/commons-email/">Apache Commons Mail</a> instead. 
 The little service was quite easy to put together, you can get it 
-<a href="https://github.com/janjongerden/mailsender">on github</a> if you want.
+<a href="https://github.com/janjongerden/mailsender">on GitHub</a> if you want.
 <br/>
 <br/>
 
@@ -58,7 +59,7 @@ be enabled and a snippet like this added to the config:
 }
 </code></pre>
 
-Now all the pieces are in place and with an html form posting to /mail the picture is complete! On my site
+Now all the pieces are in place and with an HTML form posting to /mail the picture is complete! On my site
 the end product looks a bit like this:
 <br />
 <br />

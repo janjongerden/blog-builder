@@ -39,7 +39,7 @@ class Blog(private val path: Path) {
         val (key, value) = line.split("=")
 
         if (!Props.knownProps.contains(key))
-            throw IllegalArgumentException("The property '$key' is unknown.")
+            throw IllegalArgumentException("The property '$key' is unknown. Known properties are: ${Props.knownProps}")
 
         if (key == "tags") {
             tags = value.split(",").map { tag -> tag.trim() }.toSet()
