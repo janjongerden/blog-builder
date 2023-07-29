@@ -2,8 +2,16 @@ title=Webroach - xroach for webpages
 date=2022-10-25
 tags=hacks,html,linux,cockroaches
 roaches=5
-description=The story of Webroach, how I created the HTML counterpart of the xroach linux application. It is open source, so you too can have some roaches roaming your website.
+description=The story of webroach, how I created the HTML counterpart of the xroach linux application. It is open source, so you too can have some roaches roaming your website.
 --content
+I wrote webroach, the web version of xroach. It livens up webpages by adding a bunch of cockroaches
+to the page that run around looking for an image to hide behind. You can find
+<a href="https://github.com/janjongerden/webroach">the source code on GitHub</a>.
+<br/>
+<br/>
+
+<h3>background</h3>
+
 One of my all-time favorite linux/unix applications is <strong>xroach</strong>, which lets a flock of cockroaches
 run around on your desktop, until they find a window to hide behind.
 It fits in a bigger suite of playful 90ties linux tools, such as xeyes, xsnow, xbill, and the likes.
