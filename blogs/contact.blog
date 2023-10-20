@@ -21,7 +21,7 @@ You can contact me on <a href="https://nl.linkedin.com/in/janjongerden">linkedIn
         <textarea required="required" class="u-full-width" name="message" id="message"></textarea>
         <br />
 
-        <label for="turingtest">Which animal is the fluffiest: turtle, rabbit or snake? *</label>
+        <label for="turingtest">Which type of animal is the fluffiest: turtle, rabbit or snake? *</label>
         <input type="text" name="turingtest" id="turingtest" required="required" pattern="[ ]*(jellyfish|turtle|rabbit|snake)[ ]*" 
             title="To proof you are not a robot, please pick the animal you think is fluffiest" placeholder="giraffe">
         <br />

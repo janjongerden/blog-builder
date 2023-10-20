@@ -167,7 +167,7 @@ the question harder. By asking about the fluffiness of animals, it is unlikely t
 The new question should rule out the scenarios where the bot either recognizes the question or parses the 
 title attribute to get to the answer.
 
-<pre><code class="prettyprint">&lt;label for="turingtest">Which animal is the fluffiest: turtle, rabbit or snake? *&lt;/label>
+<pre><code class="prettyprint">&lt;label for="turingtest">Which type of animal is the fluffiest: turtle, rabbit or snake? *&lt;/label>
 &lt;input type="text" required="required" pattern="[ ]*(jellyfish|turtle|rabbit|snake)[ ]*" title="Pick the fluffiest animal"/>
 </code></pre>
 

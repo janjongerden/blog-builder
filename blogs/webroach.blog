@@ -10,6 +10,11 @@ to the page that run around looking for an image to hide behind. You can find
 <br/>
 <br/>
 
+<figure>
+    <img src="img/roaches_desktop.png" alt="desktop with roaches" style="width: 80%;" />
+    <figcaption>Roaches on a desktop, atypically walking <em>on top</em> of the windows.</figcaption>
+</figure>
+
 <h2>background</h2>
 
 One of my all-time favorite linux/unix applications is <strong>xroach</strong>, which lets a flock of cockroaches
@@ -20,10 +25,8 @@ Once standard in every linux install, xroach has slowly disappeared from linux d
 years. On the internet, some traces can be found, such as <a href="https://github.com/interkosmos/xroach">
 this modernized version</a>.
 
-<figure>
-    <img src="img/roaches_desktop.png" alt="desktop with roaches" style="width: 80%;" />
-    <figcaption>Roaches on a desktop, atypically walking <em>on top</em> of the windows.</figcaption>
-</figure>
+<br />
+<br />
 
 <h2>moving to the web</h2>
 
