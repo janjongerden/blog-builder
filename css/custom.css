@@ -2,10 +2,13 @@
     font-size: 3.4rem;
     width: 100%;
     padding-top: 10px;
-    border-bottom-color: #1eaedb;
+    border-bottom-color: #110ae6;
     border-bottom-style: solid;
     margin-bottom: 20px;
     background-color: #e5e5f7;
+}
+a {
+    color: #110ae6;
 }
 .menu a {
     text-decoration: none;
@@ -44,7 +47,8 @@ code {
     margin-right: 4px;
 }
 input[type="submit"] {
-    background-color: #1EAEDB;
+    background-color: #110ae6;
+    color: #eee;
 }
 .related {
     font-weight: bold;
