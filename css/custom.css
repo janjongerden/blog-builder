@@ -58,3 +58,6 @@ input[type="submit"] {
     padding: 10px 0 0 20px;
     font-style: italic;
 }
+h2 {
+    font-size: 3.5rem;
+}

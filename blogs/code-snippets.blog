@@ -35,7 +35,7 @@ accordingly. The same BASIC code fragment will now look like this:
 20 goto 10
 </code></pre>
 
-<h3>more options</h3>
+<h2>more options</h2>
 
 There are a couple of options to influence the looks of your code. For one 
 the prettifier only adds spans and classes to your code, the actual looks

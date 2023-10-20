@@ -11,7 +11,7 @@ Okay, maybe not life-changing, but it sounds like a nice hack anyway, so here we
 <br/>
 <br/>
 
-<h3>Using a git hook</h3>
+<h2>Using a git hook</h2>
 
 I figured I could use a <a href="https://githooks.com/">git hook</a> to start up the browser and go to the
 right repo. It turns out there is no <code>post-push</code> hook, but for this purpose, a <code>pre-push</code>
@@ -43,7 +43,7 @@ sense or not will of course depend on your workflow.
 
 <br />
 <br />
-<h3>Applying the hook everywhere</h3>
+<h2>Applying the hook everywhere</h2>
 
 In case you like this hook, you will want to use it in every locally cloned repo. One way is to create
 a directory <code>~/.git-template/hooks</code> and put the git hook in there. Now make this your default

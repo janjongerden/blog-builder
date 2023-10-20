@@ -19,7 +19,7 @@ do the same. To get Greasemonkey running, get it
 <a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/">here</a>
  and restart your browser. You will now see a little monkey head in the
 top right corner of your browser. You can install the script by opening
-<a href="div-remover.user.js">this link to the script</a> in your browser.
+<a href="js/div-remover.user.js">this link to the script</a> in your browser.
 Alternatively you can click on the arrow next to the monkey and
 choose "New user script...". Fill out the required fields and then paste the
 script below in the edit window (by default pasting is disabled in the editor,
@@ -48,7 +48,7 @@ each iframe within the page, making sure the script only runs once per url.
 <br />
 <br />
 
-<h3>the mobile story</h3>
+<h2>the mobile story</h2>
 The story for mobile is a bit trickier: the Greasemonkey add-on is not yet
 available for Firefox on Android as far as I can tell. However, there is an 
 alternative add-on, the 

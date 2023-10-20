@@ -10,7 +10,7 @@ to the page that run around looking for an image to hide behind. You can find
 <br/>
 <br/>
 
-<h3>background</h3>
+<h2>background</h2>
 
 One of my all-time favorite linux/unix applications is <strong>xroach</strong>, which lets a flock of cockroaches
 run around on your desktop, until they find a window to hide behind.
@@ -25,7 +25,7 @@ this modernized version</a>.
     <figcaption>Roaches on a desktop, atypically walking <em>on top</em> of the windows.</figcaption>
 </figure>
 
-<h3>moving to the web</h3>
+<h2>moving to the web</h2>
 
 I decided it was time to bring back xroach, but this time for the web. Using the original cockroach images,
 my limited javascript skills and some hacking, I came up with <a href="https://github.com/janjongerden/webroach">webroach</a>:
@@ -62,7 +62,7 @@ little buggers some shelter.
     <figcaption>This one looks a lot like the fellow that spent a night in my sleeping bag in Mangalore.</figcaption>
 </figure>
 
-<h3>technical implementation details</h3>
+<h2>technical implementation details</h2>
 
 I was looking for a way to pack everything into a single file for ease of roachifying a webpage.
 It was here that I discovered you can specify an image in binary form, embedded in html. When you use

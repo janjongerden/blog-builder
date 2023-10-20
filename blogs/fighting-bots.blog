@@ -3,7 +3,7 @@ date=2020-08-28
 tags=blogging,hacks,bots
 description=A tale of fighting spam bots abusing my contact form. A series of experiments led to a simple solution to stop the bots.
 --content
-My site has had <a href="contact.html">a contact form</a>
+My site has a <a href="contact.html">contact form</a>
 since the start of this website, a couple of years ago. To my great surprise I have had almost no
 bots visiting and submitting the form with spam for the first few years. However, since a
 few months I get at least one spam message per day, with the usual offerings of free sex
@@ -12,7 +12,7 @@ since it gives me the opportunity to experiment with ways to fight the bots and 
 <br/>
 <br/>
 
-<h3>classic approach - (re)Captcha</h3>
+<h2>classic approach - (re)Captcha</h2>
 
 A common way to prevent bots from submitting your forms is to include a field
 in your form only humans can enter correctly. Originally 'captcha' fields were popular,
@@ -39,7 +39,7 @@ All in all not the ideal user experience, so time to find better ways to fend of
 <br/>
 <br/>
 
-<h3>first try - the hidden field</h3>
+<h2>first try - the hidden field</h2>
 
 An interesting idea I came across is to add another field to your form that only bots will fill out. To
 prevent humans from entering data, you just hide the field from view while keeping it in the HTML form. 
@@ -64,7 +64,7 @@ that includes the field <code>nohuman</code>.
 <br/>
 <br/>
 
-<h3>second attempt - different hiding</h3>
+<h2>second attempt - different hiding</h2>
 
 So it looks like the bots noticed the field was not shown. Perhaps a different way of hiding the field will help.
 Instead of not displaying the field at all, I move it away from the visible part of the screen:
@@ -83,7 +83,7 @@ Some bots fill out the field, some choose to ignore it, so no way to filter on t
 <br />
 
 
-<h3>third time lucky?</h3>
+<h2>third time lucky?</h2>
 
 Okay, the non-intrusive attempts did not cut it. My next try is just asking the question out loud: "Are you a robot?"
 
@@ -115,7 +115,7 @@ the bots supplied the value 'no' even though the rest of the message did not loo
 <br/>
 <br/>
 
-<h3>attempt 4: no means no</h3>
+<h2>attempt 4: no means no</h2>
 
 With the <em>"Are you a robot"</em> question I can filter out over 90% of the spam bots.
 Still, the smartest bots can somehow figure out how to supply the desired answer.
@@ -159,7 +159,7 @@ and many kept answering <em>no</em> so the regex parsing is not likely (or even 
 <br/>
 <br/>
 
-<h3>attempt 5: harder question</h3>
+<h2>attempt 5: harder question</h2>
 
 With all the previous attempts failing as the bots somehow saw a way to guess the answer, let's make
 the question harder. By asking about the fluffiness of animals, it is unlikely the bots will come prepared.
@@ -180,7 +180,7 @@ So choosing an original question and checking the answer seems to do the job.
 <br/>
 <br/>
 
-<h3>conclusion</h3>
+<h2>conclusion</h2>
 
 For a simple website, a 'somewhat hard' question can filter out casually passing by bots. This approach
 probably won't work on more interesting, high traffic sites, as bots will be trained to recognize the question or will solicit 

@@ -13,7 +13,7 @@ and the service is the only one who knows about my email address.
 <br />
 <br />
 
-<h3>the spark service</h3>
+<h2>the spark service</h2>
 I have used <a href="http://sparkjava.com/">Spark</a> before, and it seemed fit for the job. Spark is
 a very easy-to-use framework where a REST or web server is up and running in no time. Once the
 REST service is running, it waits on its port (default is 4567) for incoming requests, which it
@@ -27,7 +27,7 @@ The little service was quite easy to put together, you can get it
 <br/>
 <br/>
 
-<h3>configuring mail on the server</h3>
+<h2>configuring mail on the server</h2>
 As it turned out, this was the first time my server was handling email. Setting up mail on a linux machine
 is pretty easy. Just installing <a href="http://mailutils.org/">GNU Mailutils</a>, the self-proclaimed swiss army
 knife of electronic mail handling, does the job:
@@ -40,7 +40,7 @@ the defaults are okay and your mail should be ready to go.
 
 <br />
 <br />
-<h3>setting up lighttpd as a reverse proxy</h3>
+<h2>setting up lighttpd as a reverse proxy</h2>
 To hide the forwarding to a different port I set up a reverse proxy to let the Spark service listen to
 the regular /mail instead of :4567/mail. To let this work in lighttpd the <code>mod_proxy</code> module has to
 be enabled and a snippet like this added to the config:

@@ -22,7 +22,7 @@ private void doit() {
 }
 </code></pre>
 
-<h3>Good intentions and the road to hell</h3>
+<h2>Good intentions and the road to hell</h2>
 
 Well, you may ask, what is wrong with good intentions and the hope for a better future then?
 Everything is! The road to a messy code base and buggy software is paved with
@@ -41,7 +41,7 @@ valid, save to fix or at all necessary at the present time.
 <br />
 <br />
 
-<h3>If not TODO, then what?</h3>
+<h2>If not TODO, then what?</h2>
 If a TODO would only take a few minutes to fix, do it now. Now it will really take you only a few
 minutes to fix, unlike a potential future fixer of the TODO who will have to reread the code, 
 reverify the possible solutions and all in all spends ten times as much time and effort to do so.
@@ -64,7 +64,7 @@ Instead, create a ticket and assign it to yourself.
 <br />
 <br />
 
-<h3>Exceptions proving the rule</h3>
+<h2>Exceptions proving the rule</h2>
 Okay, there may be a few exceptions. If you are working on a hobby project all alone and without
 a bug tracker, or on some other tiny piece of software, or if you are 100% sure you will do 
 the TODO within the next few hours or days, go ahead and create one. And do I do TODO? Yes! However,
