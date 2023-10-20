@@ -26,7 +26,6 @@
 <body>
 <header class=menu>
     <a href="index.html" class=menuItem>HOME</a>
-    <br/>
     <a href="contact.html" class=menuItem>CONTACT</a>
 </header>
 <div class=container>

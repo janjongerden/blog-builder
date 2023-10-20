@@ -3,7 +3,9 @@
     width: 100%;
     padding-top: 10px;
     border-bottom-color: #1eaedb;
+    border-bottom-style: solid;
     margin-bottom: 20px;
+    background-color: #e5e5f7;
 }
 .menu a {
     text-decoration: none;
@@ -14,9 +16,6 @@
 .nohuman {
     position: absolute;
     left:   -1000px;
-}
-body {
-    background-image: url("../img/paper.png");
 }
 .searchInput {
     display: inline;
