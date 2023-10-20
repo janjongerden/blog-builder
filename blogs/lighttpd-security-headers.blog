@@ -1,6 +1,6 @@
 title=Security headers for lighttpd
 date=2023-10-20
-tags=lighttpd
+tags=lighttpd,security
 description=How to configure your lighttpd website to have safe headers.
 --content
 <strong>TL;DR</strong> To configure your lighttpd webserver to use security headers that will harden your website against
@@ -42,7 +42,7 @@ Some problems you may run into:
 
 <h2>why do I want these headers?</h2>
 
-The headers listed above help prevent common hack attempts by allowing less and showing less. Most headers add
+The headers listed above help prevent common hack attempts by allowing less and revealing less. Most headers add
 an extra layer of defense, making it harder to exploit mistakes in the website running on your webserver.
 For example, when an attacker manages to inject javascript or other malicious content in your website, these
 measures will help limit the resulting damage.
@@ -115,8 +115,8 @@ unless you expect to be serving older browsers, in which case you should set it 
 <h2>Server</h2>
 The server header may reveal detailed information on the exact type of webserver you are using, e.g.
 <code>Apache/2.4.1 (Unix)</code>. Lighttpd also does this by default.
-This is not so great, as it may make it easier for attackers to abuse known
-problems in the webserver you are using, so it's best to disable the header, or set it to something neutral,
-like <code>my webserver</code>
+This is not so great, as it makes it easier for attackers to abuse known
+problems in the specific webserver you are running, so it's best to either disable the header, or set it to
+something generic, like <code>my webserver</code>
 <br/>
 <br/>
