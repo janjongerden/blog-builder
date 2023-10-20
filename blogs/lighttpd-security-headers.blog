@@ -1,0 +1,122 @@
+title=Security headers for lighttpd
+date=2023-10-20
+tags=lighttpd
+description=How to configure your lighttpd website to have safe headers.
+--content
+<strong>TL;DR</strong> To configure your lighttpd webserver to use security headers that will harden your website against
+common hacking attacks, add the section below to your config file (typically <code>/etc/lighttpd/lighttpd.conf</code>),
+restart the webserver, and you're good to go.
+
+<pre><code class="prettyprint">server.modules += ("mod_setenv")
+
+$HTTP["scheme"] == "https" {
+  setenv.add-response-header = (
+    "Referrer-Policy" => "same-origin",
+    "Strict-Transport-Security" => "max-age=31536000",
+    "Content-Security-Policy" => "default-src 'self'",
+    "X-Frame-Options" => "DENY",
+    "X-Content-Type-Options" => "nosniff",
+    "Permissions-Policy" => "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()",
+    "X-Xss-Protection" => "1; mode=block",
+    "Server" => "my webserver",
+  )
+}
+</code></pre>
+
+<h2>troubleshooting the setup</h2>
+
+Some problems you may run into:
+<br/>
+<br/>
+<ul>
+    <li><strong>The headers don't show up.</strong> Did you restart the lighttpd service with <code>sudo service lighttpd restart</code>?</li>
+    <li><strong>The headers still don't show up.</strong> Are you using https? The config snippet above only affects https traffic:
+        add an http section with the relevant headers.</li>
+    <li><strong>Still no headers.</strong> Do you have more than one place in your config where <code>setenv.add-response-header</code>
+        is applied? This won't work, as contrary to the name, it <em>replaces</em> instead of <em>adds</em> the headers.
+        so you have to add all headers you want in one go.</li>
+    <li><strong>Headers show up fine, but website is broken.</strong> You may have made the config too strict. Try loosening the
+        rules up a bit. Likely suspects: the CSP and HSTS headers.</li>
+    <li><strong>Weird things still happen.</strong> Check the browser console, syslog, and lighttpd log files for clues.</li>
+</ul>
+
+<h2>why do I want these headers?</h2>
+
+The headers listed above help prevent common hack attempts by allowing less and showing less. Most headers add
+an extra layer of defense, making it harder to exploit mistakes in the website running on your webserver.
+For example, when an attacker manages to inject javascript or other malicious content in your website, these
+measures will help limit the resulting damage.
+
+To see in what shape you website is, you can enter the url on the
+<a href="https://securityheaders.com/">securityheaders.com</a> website and will get a rating together with some
+hints how to improve.
+
+I'll dive into the different headers in more detail below.
+
+<br/>
+<br/>
+<h2>Referrer-Policy</h2>
+
+The <code>Referrer-Policy</code> header controls how much information the browser will send in the <code>referer</code> header
+for requests made from your site.
+Note that the actual request header is incorrectly spelled "referer", while this header and its values use the correct
+spelling of the word.
+Good options are <code>no-referrer</code> (omits the header) or <code>same-origin</code> (only include for requests
+to the same site). Restricting the referer headers prevents accidentally leaking any sensitive data in the
+originating url.
+
+<br/>
+<br/>
+<h2>Strict-Transport-Security</h2>
+The <code>Strict-Transport-Security</code> or HSTS header tells your browser to always use https when connecting to your
+website. This prevents certain hacks where the attacker tries to trick visitors into using http to connect to the
+website, making the traffic susceptible to snooping. The <code>max-age</code> parameter is the time the browser
+should remember this, in second. For a year, use 31536000.
+
+<br/>
+<br/>
+<h2>Content-Security-Policy</h2>
+The <code>Content-Security-Policy</code> or CSP header tells the browser which sources are okay to load content from.
+This can stop maliciously injected content from being fetched by the browser. Can be specified per resource type.
+
+<br/>
+<br/>
+<h2>X-Frame-Options</h2>
+Whether this webpage can be put in a frame. Turning this off helps prevent
+<a href="https://en.wikipedia.org/wiki/Clickjacking">clickjacking</a> for your site.
+
+<br/>
+<br/>
+<h2>X-Content-Type-Options</h2>
+This modifies the browsers behavior to "guesstimate" the type of content it is being served. This can be abused
+in some hacking scenarios, so better turn it off by setting it to "nosniff", where no assumptions are made and
+the only the <code>Content-type</code> header is respected.
+
+<br/>
+<br/>
+<h2>Permissions-Policy</h2>
+This header limits the type of "special" permissions your website will try to use.
+For example, if you know your website should never ask for "geolocation" or "camera", you can turn it off.
+This way any maliciously injected code won't succeed in gaining such privileges. Only problem is that there's
+no "deny all" option, so you have to list every possible option, making it kind of verbose. Also, you have to
+revisit from time to time, as new permission types will keep being added.
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection
+<br/>
+<br/>
+<h2>X-Xss-Protection</h2>
+This header is sort of dubious, as it is not part of the http standard. Some (older) browsers do some cross site
+scripting mitigation when the header is set, but no guarantees. MDN even
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection">recommends not using it</a>,
+unless you expect to be serving older browsers, in which case you should set it to <code>1; mode=block"</code>.
+
+<br/>
+<br/>
+<h2>Server</h2>
+The server header may reveal detailed information on the exact type of webserver you are using, e.g.
+<code>Apache/2.4.1 (Unix)</code>. Lighttpd also does this by default.
+This is not so great, as it may make it easier for attackers to abuse known
+problems in the webserver you are using, so it's best to disable the header, or set it to something neutral,
+like <code>my webserver</code>
+<br/>
+<br/>

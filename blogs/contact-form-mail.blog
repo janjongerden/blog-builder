@@ -1,6 +1,6 @@
 title=Sending mail from a contact form
 date=2020-04-01
-tags=hacks,blogging,java
+tags=hacks,blogging,java,lighttpd
 description=How I set up my contact form to send emails in a way that does not reveal my email address to the world.
 --content
 How to send mail from a contact form without using PHP or CGI scripts nor
