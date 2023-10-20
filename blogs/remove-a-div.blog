@@ -58,7 +58,7 @@ claims to have only limited support for Greasemonkey scripts, it did the job
 for this simple script. Once you have installed the add-on, you can add new
 user scripts by opening a URL to such a script when the url ends with
  "user.js". To install the div-remover script you can 
-<a href="div-remover.user.js">click here</a> and the script will be installed.
+<a href="js/div-remover.user.js">click here</a> and the script will be installed.
 For me this does the job, although the removing of the div is a bit slower 
 than in the desktop version, meaning I still see the banner for a second or 
 so.
