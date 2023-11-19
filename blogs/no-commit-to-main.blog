@@ -12,11 +12,11 @@ forbidden branches of your choosing - again.
 
 <h2>Use a git pre-commit hook</h2>
 
-You can set up a pre-commit git hook. This is a script inside a repo's <code>.git</code> directory
-that is triggered before committing code. When the branch is a protected one (typically <code>main</code>),
+A pre-commit git hook is a script inside a repo's <code>.git/</code> directory
+that is triggered before any git commit is executed. When the branch is a protected one (typically <code>main</code>),
 the commit is refused, and you will save yourself the trouble of undoing the unwanted commit.
 
-The hook will look a bit like this:
+The hook looks like this:
 
 <pre><code class="prettyprint">#!/bin/bash
 
