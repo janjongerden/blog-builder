@@ -39,12 +39,15 @@ code {
     /* Fixes a white-ish ugly border that sometimes shows up in prettified code blocks */
     border: none;
 }
+.tagItem a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
 .tagItem {
     background: #b9eafa;
     background: black;
-    color: white;
     padding: 4px;
-    font-weight: bold;
     margin-right: 4px;
 }
 input[type="submit"] {

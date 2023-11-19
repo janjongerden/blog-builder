@@ -5,8 +5,7 @@ import java.io.File
 import java.nio.file.Path
 import kotlin.io.path.name
 
-class Blog(private val path: Path) {
-
+class BlogArticle(private val path: Path) : BlogElement() {
 
     private val props = HashMap<String, String>()
     private val contentHeader = "--content"
@@ -38,8 +37,9 @@ class Blog(private val path: Path) {
         }
         val (key, value) = line.split("=")
 
-        if (!Props.knownProps.contains(key))
+        if (!Props.knownProps.contains(key)) {
             throw IllegalArgumentException("The property '$key' is unknown. Known properties are: ${Props.knownProps}")
+        }
 
         if (key == "tags") {
             tags = value.split(",").map { tag -> tag.trim() }.toSet()
@@ -64,7 +64,7 @@ class Blog(private val path: Path) {
         return path.name.replace(".blog", ".html")
     }
 
-    fun getProperty(tag: String): String {
+    override fun getProperty(tag: String): String {
         return props.getOrDefault(tag, "")
     }
 
@@ -72,11 +72,11 @@ class Blog(private val path: Path) {
         return props.getOrDefault(Props.SHOW_IN_BLOG_LIST, "true").toBoolean()
     }
 
-    fun getTags(): Set<String> {
+    override fun getTags(): Set<String> {
         return tags
     }
 
-    fun getRoachCount(): Int {
+    override fun getRoachCount(): Int {
         return props.getOrDefault(Props.ROACHES, "0").toInt()
     }
 }

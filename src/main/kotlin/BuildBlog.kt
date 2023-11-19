@@ -18,7 +18,7 @@ private const val outputDir: String = "/tmp/bloggin/"
 private val head = readFile("templates/head.template")
 private val bottom = readFile("templates/bottom.template")
 
-private val blogs = HashSet<Blog>()
+private val blogArticles = HashSet<BlogArticle>()
 private val simpleTags = setOf(TITLE, DESCRIPTION)
 private lateinit var cssFileNames:Map<String, String>
 private lateinit var jsFileNames:Map<String, String>
@@ -32,6 +32,8 @@ fun main() {
     readBlogFiles()
 
     generateBlogHtml()
+
+    generateTagPages()
 }
 
 fun copyStaticFiles() {
@@ -90,7 +92,7 @@ fun createOutputDir() {
 }
 
 fun generateBlogHtml() {
-    blogs.forEach { blog ->
+    blogArticles.forEach { blog ->
         val file = File(outputDir + blog.getHtmlFileName())
 
         file.createNewFile()
@@ -101,13 +103,35 @@ fun generateBlogHtml() {
     }
 }
 
-fun enrichTemplate(content: String, blog: Blog): String {
+fun generateTagPages() {
+    val tags = blogArticles.map { blog -> blog.getTags() }
+        .flatten()
+        .toSet()
+
+    tags.forEach { tag ->
+        val file = File("${outputDir}/tag_${tag}.html")
+
+        file.createNewFile()
+
+        val tagPage = TagPage(tag)
+
+        val relatedBlogs = blogArticles.filter{blogArticle -> blogArticle.getTags().contains(tag) }
+
+        val relatedBlogList = generateBlogList(relatedBlogs)
+
+        file.appendText(enrichTemplate(head, tagPage))
+        file.appendText(relatedBlogList)
+        file.appendText(enrichTemplate(bottom, tagPage))
+    }
+}
+
+fun enrichTemplate(content: String, blog: BlogElement): String {
     var enriched = content
     for (tag: String in simpleTags) {
         enriched = enriched.replace("\${$tag}", blog.getProperty(tag))
     }
     if (content.contains(BLOG_LISTING)) {
-        val listing = generateBlogList(blogs)
+        val listing = generateBlogList(blogArticles)
         enriched = enriched.replace(BLOG_LISTING, listing)
     }
     if (content.contains(ARTICLE_TAGS)) {
@@ -146,19 +170,19 @@ fun enrichTemplate(content: String, blog: Blog): String {
     return enriched
 }
 
-fun getRelatedBlogs(blog: Blog): Collection<Blog> {
+fun getRelatedBlogs(blog: BlogElement): Collection<BlogArticle> {
     val tags = blog.getTags()
     if (tags.isEmpty()) {
         return emptyList()
     }
-    return blogs.filter { b -> b != blog}
+    return blogArticles.filter { b -> b != blog}
         .filter { b -> b.getTags().intersect(tags).isNotEmpty() }
         .take(3)
 }
 
-fun generateBlogList(blogs: Collection<Blog>): String {
+fun generateBlogList(blogArticles: Collection<BlogArticle>): String {
     var html = "<ul class=blogList>"
-    blogs.filter { blog -> blog.isListable() }
+    blogArticles.filter { blog -> blog.isListable() }
         .sortedByDescending { blog -> blog.getDate() }
         .forEach { blog ->
             run {
@@ -175,29 +199,10 @@ fun generateBlogList(blogs: Collection<Blog>): String {
     return html
 }
 
-fun generateTags(tags: Collection<String>): String {
-    if (tags.isEmpty()) {
-        return ""
-    }
-    var html = "<div class=tags>"
-    tags.forEach { tag ->
-            run {
-                html +=
-                    """
-                    <span class=tagItem>
-                        $tag
-                    </span>
-                    """
-            }
-        }
-    html += "</div> <br/>"
-    return html
-}
-
 fun addBlog(path: Path) {
-    val blog = Blog(path)
-    println("Found blog " + blog.getName())
-    blogs.add(blog)
+    val blogArticle = BlogArticle(path)
+    println("Found blog " + blogArticle.getName())
+    blogArticles.add(blogArticle)
 }
 
 fun readFile(fileName: String): String {
