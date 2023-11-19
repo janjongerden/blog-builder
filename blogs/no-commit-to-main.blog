@@ -1,0 +1,62 @@
+title=Don't commit to main
+date=2023-11-19
+tags=git,hacks
+description=Prevent accidental commits to a protected branch such as <code>main</code>.
+--content
+
+Tired of accidentally committing to <code>main</code>, only to notice your mistake when your push to remote is rejected?
+Here's a trick that uses a <em>pre-commit</em> git hook to make sure you'll never commit to <code>main</code> - or other
+forbidden branches of your choosing - again.
+<br/>
+<br/>
+
+<h2>Use a git pre-commit hook</h2>
+
+You can set up a pre-commit git hook. This is a script inside a repo's <code>.git</code> directory
+that is triggered before committing code. When the branch is a protected one (typically <code>main</code>),
+the commit is refused, and you will save yourself the trouble of undoing the unwanted commit.
+
+The hook will look a bit like this:
+
+<pre><code class="prettyprint">#!/bin/bash
+
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+# list of branches you shouldn't commit to directly
+forbidden_branches=("main" "production" "some_other_forbidden_branch")
+
+if [[ " ${forbidden_branches[*]} " =~ " ${current_branch} " ]]; then
+  echo "No committing to branch '${current_branch}' please."
+  exit 1
+fi
+</code></pre>
+
+<h2>Setting the hook up for one repo</h2>
+
+To enable the hook for one repo, create or update the pre-commit hook for this repo with the code above.
+
+<pre><code> $ nano &lt;repo-root>/.git/hooks/pre-commit
+</code></pre>
+
+The script has to be executable:
+
+<pre><code> $ chmod +x &lt;repo-root>/.git/hooks/pre-commit
+</code></pre>
+
+<br />
+<br />
+<h2>Applying the hook everywhere</h2>
+
+In case you like this hook, you will want to use it in every repository. For this, create
+a directory <code>~/.git-template/hooks</code> and put the git hook in there and make it executable.
+Now make this your default git template source by running:
+
+<pre><code> $ git config --global init.templatedir '~/.git-template'
+</code></pre>
+
+From now on, each newly cloned repo will have this hook configured by default. For existing repos, you
+can run <code>git init</code> in the root of that repo. This command will copy the hooks from your template
+directory, but won't otherwise change the existing configuration of that repo.
+
+<br />
+<br />
