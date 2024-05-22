@@ -4,49 +4,78 @@ tags=html,hacks
 description=How to remove an unwanted HTML element from a webpage using Greasemonkey.
 --content
 
-Recently the news site <a href="http://nu.nl">nu.nl</a> decided to give users
-with adblockers in place a slight slap on the wrist by adding a banner on top
-of each page with a message urging them to turn off the adblocker for their
-site. Because I really don't like ads, but also don't like big banners on top
-of each page, I decided to block the banner.
+To get rid of minor annoyances in your favorite websites, you can use Greasemonkey
+to tweak html where needed. The <code>hide image</code> and <code>ALT</code> buttons on Mastodon images
+are such an annoyance - I rarely need these buttons, but they do interfere with images.
+Text in images may become unreadable, like in the messages from
+<a href="https://mas.to/@skeletor">inspirational Skeletor</a>:
+
+
+<img src="img/skeletor_obfuscated.png" alt="Skeletor image with unreadable text">
+
 <br/>
 <br/>
-Greasemonkey looked like the right tool for the job. It is an add-on for
+<h2>greasemonkey</h2>
+
+Greasemonkey is a suitable tool to fix the problem. It is an add-on for
  Firefox that allows a user to add custom behaviour to pages by creating
 scripts that run on page load and can modify the html, css or javascript on
 a page. For Chrome <a href="https://tampermonkey.net/">Tampermonkey</a> will
 do the same. To get Greasemonkey running, get it 
 <a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/">here</a>
  and restart your browser. You will now see a little monkey head in the
-top right corner of your browser. You can install the script by opening
-<a href="js/div-remover.user.js">this link to the script</a> in your browser.
-Alternatively you can click on the arrow next to the monkey and
-choose "New user script...". Fill out the required fields and then paste the
-script below in the edit window (by default pasting is disabled in the editor,
+top right corner of your browser. You can install the script below by opening
+<a href="js/mastodon-image-liberator.user.js">this link to the script</a> in your browser.
+Alternatively you can click the monkey's head and
+choose <code>New user script...</code>. Fill out the required fields and then paste the
+script content below in the edit window (by default pasting is disabled in the editor,
 so you may have to enable this first).
+<br />
+<br />
+The Greasemonkey script that will hide the buttons:
 
 <pre><code class="prettyprint">// ==UserScript==
-// @name        nu-div-remover
-// @namespace   janjongerden.nl
-// @description Removes the div that complains about adblockers
-// @include     http://www.nu.nl/*
-// @version     1
-// @grant       none
-// @noframes
+// @name         Mastodon Image Liberator
+// @namespace    janjongerden.nl
+// @version      1.0
+// @description  Hide the buttons on top of images
+// @author       Jan Jongerden
+// @include      https://mas.to/*
+// @grant        none
 // ==/UserScript==
 
-document.getElementsByClassName('adblocker')[0].remove()</code></pre>
+const cleanButtons = () => {
+    const hideButtons = document.querySelectorAll('.icon-button.overlayed');
 
-The script is run on page load, for all urls starting with www.nu.nl and 
-will remove the offending div from the DOM. In this case the div cannot be
-targeted by id, so
-instead the first div with class matching 'adblocker' is removed. Of the 
-Greasemonkey annotations in the header the most interesting part is the
-<code>@include</code>, which states on which pages the script should run. 
-The <code>@noframes</code> annotation prevents the script from running on 
-each iframe within the page, making sure the script only runs once per url.
+    hideButtons.forEach(element => {
+        element.style.display = 'none';
+    });
+
+    const altButtons = document.querySelectorAll('.media-gallery__item__badges');
+
+    altButtons.forEach(element => {
+        element.style.bottom = '-9px';
+    });
+};
+
+var repeater = setInterval(cleanButtons, 1000);
+</code></pre>
+
+The script is run on page load, for all urls starting with <code>https://mas.to/</code> and
+removes hides the buttons. The <code>hide image</code> button is removed completely and
+the <code>ALT</code> is pushed down a bit, as I do find it useful occasionally.
+The procedure is repeated every second, as new images are loaded on the fly as you
+scroll down your message feed.
+Of all Greasemonkey annotations in the header, the most interesting part is the
+<code>@include</code>, which states on which pages the script should run. If your home
+is a different Mastodon instance, you should adjust this accordingly. You can check
+<a href="https://wiki.greasespot.net/Metadata_Block">the API reference</a> to learn
+more about the other tags. The body of the script is just plain javascript.
 <br />
 <br />
+When installed, the image is cleaned up, and Skeletor's piece of wisdom can be enjoyed:
+
+<img src="img/skeletor_cleaned.png" alt="Skeletor image with readable text">
 
 <h2>the mobile story</h2>
 The story for mobile is a bit trickier: the Greasemonkey add-on is not yet
@@ -56,12 +85,18 @@ alternative add-on, the
 Unified Script Injector</a>. Even though the add-on 
 claims to have only limited support for Greasemonkey scripts, it did the job
 for this simple script. Once you have installed the add-on, you can add new
-user scripts by opening a URL to such a script when the url ends with
- "user.js". To install the div-remover script you can 
-<a href="js/div-remover.user.js">click here</a> and the script will be installed.
-For me this does the job, although the removing of the div is a bit slower 
-than in the desktop version, meaning I still see the banner for a second or 
-so.
+user scripts by opening a URL pointing to the script when the url ends with
+ "user.js". To install the Mastodon cleaning script you can
+<a href="js/mastodon-image-liberator.user.js">click here</a> and the script will be installed.
 
+<br />
+<br />
+
+<h2>caveats</h2>
+
+Greasemonkey scripts are inherently fragile as small changes in the target page could break your script.
+When a css class is renamed or the html structure is changed, you may have to update the logic in your
+script. Another issue is modifying elements that accidentally match your filter, like removing other buttons
+with the same css class, which could break the layout or functionality of the page.
 <br />
 <br />
