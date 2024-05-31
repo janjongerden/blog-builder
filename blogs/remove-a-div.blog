@@ -17,7 +17,7 @@ Text in images may become unreadable, like in the messages from
 <br/>
 <h2>greasemonkey</h2>
 
-Greasemonkey is a suitable tool to fix the problem. It is an add-on for
+Greasemonkey is an add-on for
  Firefox that allows a user to add custom behaviour to pages by creating
 scripts that run on page load and can modify the html, css or javascript on
 a page. For Chrome <a href="https://tampermonkey.net/">Tampermonkey</a> will
@@ -62,15 +62,15 @@ var repeater = setInterval(cleanButtons, 1000);
 </code></pre>
 
 The script is run on page load, for all urls starting with <code>https://mas.to/</code> and
-removes hides the buttons. The <code>hide image</code> button is removed completely and
-the <code>ALT</code> is pushed down a bit, as I do find it useful occasionally.
+hides the buttons. The <code>hide image</code> button is removed completely and
+the <code>ALT</code> button is only pushed down a bit, as I do find it useful occasionally.
 The procedure is repeated every second, as new images are loaded on the fly as you
 scroll down your message feed.
 Of all Greasemonkey annotations in the header, the most interesting part is the
 <code>@include</code>, which states on which pages the script should run. If your home
 is a different Mastodon instance, you should adjust this accordingly. You can check
 <a href="https://wiki.greasespot.net/Metadata_Block">the API reference</a> to learn
-more about the other tags. The body of the script is just plain javascript.
+more about the other tags. The syntax of the body of the user script is just plain javascript.
 <br />
 <br />
 When installed, the image is cleaned up, and Skeletor's piece of wisdom can be enjoyed:
