@@ -78,16 +78,17 @@ When installed, the image is cleaned up, and Skeletor's piece of wisdom can be e
 <img src="img/skeletor_cleaned.png" alt="Skeletor image with readable text">
 
 <h2>the mobile story</h2>
-The story for mobile is a bit trickier: the Greasemonkey add-on is not yet
+For mobile a slightly different approach is needed: the Greasemonkey add-on is not yet
 available for Firefox on Android as far as I can tell. However, there is an 
-alternative add-on, the 
+alternative extension, the
 <a href="https://addons.mozilla.org/en-us/firefox/addon/userunified-script-injector/">
-Unified Script Injector</a>. Even though the add-on 
+Unified Script Injector (USI)</a>. Even though the extension
 claims to have only limited support for Greasemonkey scripts, it did the job
-for this simple script. Once you have installed the add-on, you can add new
-user scripts by opening a URL pointing to the script when the url ends with
- "user.js". To install the Mastodon cleaning script you can
-<a href="js/mastodon-image-liberator.user.js">click here</a> and the script will be installed.
+for this simple script. Once you have installed the extension, you can add new
+user scripts by going to the FireFox menu, open <strong>Extensions</strong> -> <strong>USI</strong>, choose
+<strong>'create new userscript'</strong> and paste the content of
+<a href="js/mastodon-image-liberator.user.js">the user script</a>. I'm sure similar solutions are available for
+other mobile browsers, but I haven't tried this myself.
 
 <br />
 <br />
