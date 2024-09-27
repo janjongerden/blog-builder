@@ -1,0 +1,122 @@
+title=Venving like a pro
+date=2024-09-27
+tags=bash,python
+description=Automating Python virtual environment switching and setup in the linux command shell
+--content
+<p>
+  <strong>TL;DR</strong> Add the code at the bottom of this page to your `.zshrc` or `.bashrc` and from now on
+  you'll automagically set up, activate and deactivate your venvs on the fly when switching directories.
+</p>
+
+<p>
+  Correctly setting up, activating and deactivating Python's virtual environments ('venv' for short) can be
+  a hassle. When you forget to switch venvs on time you'll see unexpected results and mess up your pip installs.
+  The script below smoothens the venving experience by implementing the following steps:
+</p>
+
+<p>
+  <strong>Hook in on directory changes</strong>
+  Every time you switch directories, the script checks if everything is okay venv-wise.
+  It overrides the default cd command to do some venv-related checks after each execution of the `cd` command.
+  This is done by creating the `cd()` function, which first executes the regular `cd` command, and then calls
+  the custom `check_venv` function to see if any venv work is needed in the new dir.
+</p>
+
+<p>
+  <strong>Deactivate out of scope venvs</strong>
+  First the `check_venv` function checks if a venv is active, and the new directory is not part of the directory
+  tree of that active venv. In this case execute the `deactivate` command to leave the out-of-scope venv.
+</p>
+
+<p>
+  <strong>Activate venv when present</strong>
+  When no venv is active, and the new directory already contains a `venv/` directory; simply activate it.
+</p>
+
+<p>
+  <strong>Set up venv when needed</strong>
+  In case the landing directory contains a `requirements.txt` file, but no `venv/` directory, it is clearly
+  time to create a new venv. The script prompts the user what to do.
+  <ul>
+    <li>
+      Nothing for now: no venv is created, and the script will repeat the question on the next visit.
+    </li>
+    <li>
+      Never create a venv here: a `.novenvplease` file is placed, and the next time the directory
+      is visited, no questions are asked.
+    </li>
+    <li>
+      Create a venv: nice!
+    </li>
+  </ul>
+</p>
+
+<p>
+  <strong>Creating the venv</strong>
+  A somewhat common place to specify which Python version is the `.python-version` file in the root of a project.
+  If that file exists and the version of Python is installed, it will be used to create the venv. As a result that
+  version becomes the default Python version in the venv, which is what we want. The fallback is `python3`, which
+  should be available everywhere I assume.
+</p>
+
+<p>
+  With the resulting Python version, the venv is created, activated, pip updated to the latest version and all dependencies
+  from `requirements.txt` are installed.
+</p>
+
+<pre><code class="prettyprint linenums">function check_venv() {
+  if [[ ! -z "$VIRTUAL_ENV" ]] ; then
+    # a venv is active, check if the new dir starts with the root
+    # of that venv, deactivate otherwise
+    basedir="$(dirname "$VIRTUAL_ENV")"
+    if [[ "$PWD"/ != "$basedir"* ]] ; then
+      deactivate
+    fi
+  fi
+
+  if [[ -z "$VIRTUAL_ENV" ]] ; then
+    # no venv active, check if we should activate one
+    if [[ -d ./venv ]] ; then
+      source ./venv/bin/activate
+    elif [[ -f requirements.txt && ! -f .novenvplease ]] ; then
+      echo "This dir has a requirements.txt, but no venv/ yet. What do you want to do?"
+      echo "1) Create the venv"
+      echo "2) Not now"
+      echo "3) Never for this directory"
+      echo -n "Enter your choice (1, 2, or 3): "
+      read choice
+      case $choice in
+        1)
+          echo "Creating venv..."
+          PYTHON="python3"
+          if [[ -f .python-version ]] ; then
+            PYTHON_VERSION=$(head -1 .python-version)
+            if ! type "python${PYTHON_VERSION}" &> /dev/null; then
+              echo "Python version ${PYTHON_VERSION} not found, trying with 'python3' instead."
+            else
+              echo "Using python version ${PYTHON_VERSION} from .python-version"
+              PYTHON="python${PYTHON_VERSION}"
+            fi
+          fi
+          $PYTHON -m venv venv
+          source venv/bin/activate
+          $PYTHON -m pip install --upgrade pip
+          $PYTHON -m pip install -r requirements.txt
+          ;;
+        3)
+          echo "Marking dir as no-venving by creating file '.novenvplease'."
+          touch .novenvplease
+          ;;
+      esac
+    fi
+  fi
+}
+
+function cd() {
+  builtin cd "$@"
+  check_venv
+}
+
+# check if the dir the shell started in is a venv
+check_venv
+</code></pre>
