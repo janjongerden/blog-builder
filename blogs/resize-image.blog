@@ -24,7 +24,7 @@ the original file as output. So these two commands are identical:
 $ mogrify -resize 10% image.png
 </code></pre>
 
-You can check the result of the operation using <code>identify</code> like this
+You can check the result of the operation using `identify` like this
 
 <pre><code>$ identify image.jpg 
 image.jpg JPEG 4160x2340 4160x2340+0+0 8-bit DirectClass 3.03MB 0.010u 0:00.020

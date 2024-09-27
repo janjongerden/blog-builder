@@ -14,7 +14,7 @@ Okay, maybe not life-changing, but it sounds like a nice hack anyway, so here we
 <h2>Using a git hook</h2>
 
 I figured I could use a <a href="https://githooks.com/">git hook</a> to start up the browser and go to the
-right repo. It turns out there is no <code>post-push</code> hook, but for this purpose, a <code>pre-push</code>
+right repo. It turns out there is no `post-push` hook, but for this purpose, a <code>pre-push</code>
 hook will also do the job. If you copy the bash script below to <code>&lt;repo-base&gt;/.git/hooks/pre-push</code> and
 make it executable, each time you push a new branch to remote, the GitHub page for the repo will open.
 There you'll see the changes and can open the PR.

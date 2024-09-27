@@ -167,7 +167,23 @@ fun enrichTemplate(content: String, blog: BlogElement): String {
     for (entry in jsFileNames) {
         enriched = enriched.replace(entry.key, entry.value)
     }
+    enriched = replaceBackticksWithCodeTags(enriched)
     return enriched
+}
+
+fun replaceBackticksWithCodeTags(text: String): String {
+    val count = text.count { it == '`' }
+    if (count == 0) {
+        return text
+    } else if (count % 2 == 1) {
+        throw IllegalArgumentException("The text contains an odd number of backticks! (${count} occurrences)")
+    }
+    var replacement = text
+    while (replacement.contains("`")) {
+        replacement = replacement.replaceFirst("`", "<code>")
+        replacement = replacement.replaceFirst("`", "</code>")
+    }
+    return replacement
 }
 
 fun getRelatedBlogs(blog: BlogElement): Collection<BlogArticle> {

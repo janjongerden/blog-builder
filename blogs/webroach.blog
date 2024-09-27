@@ -71,7 +71,7 @@ I was looking for a way to pack everything into a single file for ease of roachi
 It was here that I discovered you can specify an image in binary form, embedded in html. When you use
 <strong>&lt;img src="data:image/png;base64,[the base64 encoded image data]></strong>, you can include
 an image directly in html or javascript. When the roaches change direction, they get assigned a new
-image matching that direction, by changing the <code>src</code> attribute.
+image matching that direction, by changing the `src` attribute.
 
 <br/>
 <br/>

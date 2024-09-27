@@ -1,10 +1,10 @@
 title=Don't commit to main
 date=2023-11-19
 tags=git,hacks
-description=Prevent accidental commits to a protected branch such as <code>main</code>.
+description=Prevent accidental commits to a protected branch such as `main`.
 --content
 
-Tired of accidentally committing to <code>main</code>, only to notice your mistake when your push to remote is rejected?
+Tired of accidentally committing to `main`, only to notice your mistake when your push to remote is rejected?
 Here's a trick that uses a <em>pre-commit</em> git hook to make sure you'll never commit to <code>main</code> - or other
 forbidden branches of your choosing - again.
 <br/>
@@ -12,7 +12,7 @@ forbidden branches of your choosing - again.
 
 <h2>Use a git pre-commit hook</h2>
 
-A pre-commit git hook is a script inside a repo's <code>.git/</code> directory
+A pre-commit git hook is a script inside a repo's `.git/` directory
 that is triggered before any git commit is executed. When the branch is a protected one (typically <code>main</code>),
 the commit is refused, and you will save yourself the trouble of undoing the unwanted commit.
 

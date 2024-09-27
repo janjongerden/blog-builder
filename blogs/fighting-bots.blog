@@ -56,7 +56,7 @@ Accompanied by this css to hide it from human view:
 }</code></pre>
 
 Once this setup is in place, the form submissions can be filtered relatively easily by discarding anything
-that includes the field <code>nohuman</code>.
+that includes the field `nohuman`.
 <br/>
 <br/>
 <strong>the result:</strong> After running this setup for a week, the form was submitted 12 times by spam bots, 
@@ -74,7 +74,7 @@ Instead of not displaying the field at all, I move it away from the visible part
     left: -100px;
 }</code></pre>
 
-To prevent humans from accidentally tabbing into it, I set the attribute <code>tabindex</code> of the hidden input to 0. 
+To prevent humans from accidentally tabbing into it, I set the attribute `tabindex` of the hidden input to 0.
 <br/>
 <br/>
 <strong>the result:</strong> After running this for a few weeks, the results are basically the same as with attempt 1. 
@@ -97,7 +97,7 @@ would be forced to answer correctly before submitting is possible.
 
 The most desirable outcome would be that the robots would honestly say yes, and be unable to submit the 
 form. More likely
-is that they would say nothing/anything and just submit the form, ignoring the <code>required</code> 
+is that they would say nothing/anything and just submit the form, ignoring the `required`
 attribute. 
 This would also be okay, as it gives a way to filter. The most interesting outcome would be the bots 
 actually 
@@ -107,7 +107,7 @@ denying their robotness to be able to submit the form.
 <br/>
 
 <strong>the result:</strong> Interestingly, the amount of spam decreased by some 30%. My guess is that 
-some bots could not handle the <code>pattern</code> attribute and just gave up, although the drop could
+some bots could not handle the `pattern` attribute and just gave up, although the drop could
 also just be a coincidence. 
 Of the remaining bots, the field mostly contained nothing or some random string. However, about 10% of
 the bots supplied the value 'no' even though the rest of the message did not look very human to me.
@@ -132,7 +132,7 @@ bot parses the regular expression and uses the pattern to supply the right answe
 bot recognizes the question, as this may be a common question in public html forms
 </li>
 <li>
-bot parses the <code>title</code> attribute which contains a hint for the right answer
+bot parses the `title` attribute which contains a hint for the right answer
 </li>
 <li>
 some human intervention is used to find the right answer

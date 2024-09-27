@@ -4,7 +4,7 @@ tags=lighttpd,security
 description=How to configure your lighttpd website to have safe headers.
 --content
 <strong>TL;DR</strong> To configure your lighttpd webserver to use security headers that will harden your website against
-common hacking attacks, add the section below to your config file (typically <code>/etc/lighttpd/lighttpd.conf</code>),
+common hacking attacks, add the section below to your config file (typically `/etc/lighttpd/lighttpd.conf`),
 restart the webserver, and you're good to go.
 
 <pre><code class="prettyprint">server.modules += ("mod_setenv")
@@ -61,16 +61,16 @@ The <code>Referrer-Policy</code> header controls how much information the browse
 for requests made from your site.
 Note that the actual request header is incorrectly spelled "referer", while this header and its values use the correct
 spelling of the word.
-Good options are <code>no-referrer</code> (omits the header) or <code>same-origin</code> (only include for requests
+Good options are `no-referrer` (omits the header) or `same-origin` (only include for requests
 to the same site). Restricting the referer headers prevents accidentally leaking any sensitive data in the
 originating url.
 
 <br/>
 <br/>
 <h2>Strict-Transport-Security</h2>
-The <code>Strict-Transport-Security</code> or HSTS header tells your browser to always use https when connecting to your
+The `Strict-Transport-Security` or HSTS header tells your browser to always use https when connecting to your
 website. This prevents certain hacks where the attacker tries to trick visitors into using http to connect to the
-website, making the traffic susceptible to snooping. The <code>max-age</code> parameter is the time the browser
+website, making the traffic susceptible to snooping. The `max-age` parameter is the time the browser
 should remember this, in second. For a year, use 31536000.
 
 <br/>
