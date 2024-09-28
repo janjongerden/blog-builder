@@ -9,8 +9,9 @@ description=Automating Python virtual environment switching and setup in the lin
 </p>
 
 <p>
-  Correctly setting up, activating and deactivating Python's virtual environments ('venv' for short) can be
-  a hassle. When you forget to switch venvs on time you'll see unexpected results and mess up your pip installs.
+  Correctly setting up, activating and deactivating <a href="https://docs.python.org/3/library/venv.html">
+  Python's virtual environments</a> ('venv' for short) can be a hassle.
+  When you forget to switch venvs on time you'll see unexpected results and mess up your pip installs.
   The script below smoothens the venving experience by implementing the following steps:
 </p>
 
@@ -63,7 +64,26 @@ description=Automating Python virtual environment switching and setup in the lin
   from `requirements.txt` are installed.
 </p>
 
-<pre><code class="prettyprint linenums">function check_venv() {
+<h2>Closing remarks</h2>
+<ul>
+  <li>
+    The script was inspired by <a href="https://stackoverflow.com/a/50830617">this stackoverflow answer</a>.
+    Thank you user `MS_`!
+  </li>
+  <li>
+    As the script has become quite large, you may want to put it in a separate file and include that, instead
+    of cluttering your `.bashrc`/`.zshrc`.
+  </li>
+  <li>
+    Depending on your taste, you may want to let the script fail when the correct Python version is not installed
+    instead of just using any other version.
+  </li>
+  <li>
+    Known limitation: if you directly jump into a subdirectory of a Python project, no auto-venving occurs.
+  </li>
+</ul>
+
+<pre><code class="prettyprint">function check_venv() {
   if [[ ! -z "$VIRTUAL_ENV" ]] ; then
     # a venv is active, check if the new dir starts with the root
     # of that venv, deactivate otherwise
