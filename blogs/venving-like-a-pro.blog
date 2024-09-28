@@ -17,7 +17,7 @@ description=Automating Python virtual environment switching and setup in the lin
 
 <p>
   <strong>Hook in on directory changes</strong>
-  Every time you switch directories, the script checks if everything is okay venv-wise.
+  Every time you enter a directory, the script checks if everything is okay venv-wise.
   It overrides the default `cd` command to do some venv-related checks after each execution of `cd`.
   This is done by creating the `cd()` function, which first executes the regular `cd` command, and then calls
   the custom `check_venv` function to see if any venv work is needed in the new dir.
@@ -53,15 +53,15 @@ description=Automating Python virtual environment switching and setup in the lin
 
 <p>
   <strong>Creating the venv</strong>
-  A somewhat common place to specify which Python version is the `.python-version` file in the root of a project.
-  If that file exists and the version of Python is installed, it will be used to create the venv. As a result that
-  version becomes the default Python version in the venv, which is what we want. The fallback is `python3`, which
-  should be available everywhere I assume.
+  A common place to specify which Python version should be used in a project is the `.python-version` file in the root
+  of a project. If that file exists and the version of Python is installed, it will be used to create the venv.
+  As a result that version becomes the default Python version in the venv, which is exactly what we want.
+  The fallback is just plain `python3`, which should (almost) always be available.
 </p>
 
 <p>
-  With the resulting Python version, the venv is created, activated, pip updated to the latest version and all dependencies
-  from `requirements.txt` are installed.
+  With the resulting Python version, the venv is created, activated, pip updated to the latest version and all
+  dependencies from `requirements.txt` are installed.
 </p>
 
 <h2>Closing remarks</h2>
