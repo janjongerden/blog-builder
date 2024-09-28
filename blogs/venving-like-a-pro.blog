@@ -17,15 +17,15 @@ description=Automating Python virtual environment switching and setup in the lin
 <p>
   <strong>Hook in on directory changes</strong>
   Every time you switch directories, the script checks if everything is okay venv-wise.
-  It overrides the default cd command to do some venv-related checks after each execution of the `cd` command.
+  It overrides the default `cd` command to do some venv-related checks after each execution of `cd`.
   This is done by creating the `cd()` function, which first executes the regular `cd` command, and then calls
   the custom `check_venv` function to see if any venv work is needed in the new dir.
 </p>
 
 <p>
-  <strong>Deactivate out of scope venvs</strong>
-  First the `check_venv` function checks if a venv is active, and the new directory is not part of the directory
-  tree of that active venv. In this case execute the `deactivate` command to leave the out-of-scope venv.
+  <strong>Deactivate out-of-scope venvs</strong>
+  First the `check_venv` function checks if a venv is active while the new directory is not part of the directory
+  tree of that active venv. In this case the `deactivate` command is executed to leave the old venv.
 </p>
 
 <p>
@@ -49,7 +49,6 @@ description=Automating Python virtual environment switching and setup in the lin
       Create a venv: nice!
     </li>
   </ul>
-</p>
 
 <p>
   <strong>Creating the venv</strong>
