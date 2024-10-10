@@ -9,7 +9,7 @@
 // ==/UserScript==
 
 const cleanButtons = () => {
-    const hideButtons = document.querySelectorAll('.icon-button.overlayed');
+    const hideButtons = document.querySelectorAll('.media-gallery__actions__pill');
 
     hideButtons.forEach(element => {
         element.style.display = 'none';
