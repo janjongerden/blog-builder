@@ -1,0 +1,39 @@
+title=Setting the time on the Ariete coffee machine
+date=2024-10-12
+tags=coffee,time
+description=How to set the time on an Ariete coffee machine.
+--content
+
+The Ariete coffee maker makes great coffee, but setting the time is not for the faint of heart.
+Every time I unplug it, the time needs to be reset as it has no backup battery. And every time I struggle.
+So here's the definitive setting-the-time-on-an-Ariete guide.
+
+<figure>
+    <img src="img/ariete-coffee-machine.jpg" alt="The Ariete coffee machine" style="width: 50%;" />
+    <figcaption>The one and only <em>Ariete vintage American coffee machine</em>.</figcaption>
+</figure>
+
+<h2>Setting the time</h2>
+
+<ol>
+    <li>
+        Press the left-most, <strong>mode</strong> button several times, until a clock-like icon appears.
+        The text says 'timer', but what it really does is set the <em>time</em>.
+        As the display blinks a lot while switching modes, you sometimes have to wait a second before the active icon shows.
+    </li>
+    <li>
+        Press the <strong>sel</strong> button once (second button from the left).
+    </li>
+    <li>
+        Set the time using the <strong>hr</strong> and <strong>min</strong> buttons.
+    </li>
+    <li>
+        Press <strong>sel</strong> once more to confirm the time.
+    </li>
+    <li>
+        Voilà! The time is once again set.
+    </li>
+</ol>
+
+<br />
+<br />
