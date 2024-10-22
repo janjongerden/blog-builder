@@ -13,25 +13,25 @@ description=How to commit a change in file permission bits in git
 <p>
   <strong>Step one:</strong> use the regular `chmod` command to set the permission bits right.
 
-  ```
-  $ chmod +x the_script.sh
-  ```
+```
+$ chmod +x the_script.sh
+```
 </p>
 
 <p>
   <strong>Step two:</strong> add the permission change to the index.
 
-  ```
-  $ git update-index --chmod=+x the_script.sh
-  ```
+```
+$ git update-index --chmod=+x the_script.sh
+```
 </p>
 
 <p>
   <strong>Step three:</strong> commit the change.
 
-  ```
-  $ git commit -m "Add executable permission bits"
-  ```
+```
+$ git commit -m "Add executable permission bits"
+```
 </p>
 
 <p>
