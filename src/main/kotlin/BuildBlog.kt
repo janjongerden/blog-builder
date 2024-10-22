@@ -167,11 +167,27 @@ fun enrichTemplate(content: String, blog: BlogElement): String {
     for (entry in jsFileNames) {
         enriched = enriched.replace(entry.key, entry.value)
     }
-    enriched = replaceBackticksWithCodeTags(enriched)
+    enriched = replaceTripleBackticksWithCodeTags(enriched)
+    enriched = replaceInlineBackticksWithCodeTags(enriched)
     return enriched
 }
 
-fun replaceBackticksWithCodeTags(text: String): String {
+fun replaceTripleBackticksWithCodeTags(text: String): String {
+    val count = countSubstringInString(text, "```")
+    if (count == 0) {
+        return text
+    } else if (count % 2 == 1) {
+        throw IllegalArgumentException("The text contains an odd number of triple backticks! (${count} occurrences)")
+    }
+    var replacement = text
+    while (replacement.contains("```")) {
+        replacement = replacement.replaceFirst("```", "<pre><code>")
+        replacement = replacement.replaceFirst("```", "</code></pre>")
+    }
+    return replacement
+}
+
+fun replaceInlineBackticksWithCodeTags(text: String): String {
     val count = text.count { it == '`' }
     if (count == 0) {
         return text

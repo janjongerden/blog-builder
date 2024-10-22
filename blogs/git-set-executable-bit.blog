@@ -1,0 +1,38 @@
+title=Git commit a permission bit
+date=2024-10-22
+tags=git,linux
+description=How to commit a change in file permission bits in git
+--content
+<p>
+  When the file permissions of a script in git are missing, you can't directly execute this script
+  on the command line after cloning the repository.
+  To fix and commit missing executable bits on a file in your git repo, follow the three steps below.
+</p>
+
+<p>
+  <strong>Step one:</strong> use the regular `chmod` command to set the permission bits right.
+
+  ```
+  $ chmod +x the_script.sh
+  ```
+</p>
+
+<p>
+  <strong>Step two:</strong> add the permission change to the index.
+
+  ```
+  $ git update-index --chmod=+x the_script.sh
+  ```
+</p>
+
+<p>
+  <strong>Step three:</strong> commit the change.
+
+  ```
+  $ git commit -m "Add executable permission bits"
+  ```
+</p>
+
+<p>
+  The file permissions are corrected, and the script can again be executed as expected.
+</p>
