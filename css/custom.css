@@ -30,11 +30,6 @@ a {
 .searchInput input {
     padding-left: 30px;
 }
-pre {
-    /*  This fixes part of the background of a code block
-        being white when scrolling horizontally */
-    background: black;
-}
 code {
     /* Fixes a white-ish ugly border that sometimes shows up in prettified code blocks */
     border: none;
