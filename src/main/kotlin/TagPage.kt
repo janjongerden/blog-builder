@@ -6,7 +6,7 @@ class TagPage(tagName: String) : BlogElement() {
 
     init {
         props = mapOf(
-            "title" to "All blogs about $tagName",
+            "title" to "Blogs tagged '$tagName'",
         )
     }
 
