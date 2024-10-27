@@ -1,0 +1,37 @@
+title=Sane alt-tabbing in Ubuntu - part II
+date=2024-10-26
+tags=linux,hacks
+description=Changing alt-tabbing in Ubuntu to let you actually see what you're selecting.
+--content
+
+A short follow-up to <a href="change-alt-tab-behaviour-ubuntu.html">part I</a>, which improved the tabbing logic
+in Ubuntu.
+Another issue with the alt-tabbing is the default background setting, where the windows and the selection border are
+poorly visible against the background, making it hard to see which window is selected.
+
+<figure>
+    <img src="img/switcher_without_background.png" alt="Default static switcher without background" style="width: 50%;" />
+    <figcaption>Now where's my selection border again?</figcaption>
+</figure>
+
+To fix this, open `ccsm` (installation instructions in <a href="change-alt-tab-behaviour-ubuntu.html">part I</a>)
+and go to the `Static Application Switcher` settings. Here, select the `Appearance` tab and check the `Set background
+color` checkbox and pick a background color of your liking.
+
+<figure>
+    <img src="img/ccsm-switcher-colors.png" alt="Setting static switcher background" style="width: 50%;" />
+    <figcaption>Static switcher settings.</figcaption>
+</figure>
+
+The selection border is now clearly visible, and so is the window content.
+
+<figure>
+    <img src="img/switcher_with_background.png" alt="The static switcher with background" style="width: 50%;" />
+    <figcaption>That's more like it.</figcaption>
+</figure>
+
+<br />
+<br />
+Happy alt-tabbing!
+<br />
+<br />

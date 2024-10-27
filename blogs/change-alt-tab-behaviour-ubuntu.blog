@@ -1,4 +1,4 @@
-title=Changing the alt-tab behaviour in Ubuntu
+title=Sane alt-tabbing in Ubuntu - part I
 date=2020-04-01
 tags=linux,hacks
 description=How to change alt-tabbing behavior in Ubuntu to something more useful than the default.
@@ -47,5 +47,8 @@ look like this:
 <br />
 <br />
 That's it, you can now enjoy sane alt-tabbing again!
+<br />
+<br />
+<strong>update:</strong> another alt-tabbing improvement in <a href="alt-tab-ubuntu-visibility.html">part II</a>
 <br />
 <br />
