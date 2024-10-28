@@ -1,0 +1,37 @@
+title=Mypy on steroids
+date=2024-10-28
+tags=python,hacks,performance
+description=Configuring mypy as a daemon for snappy type checking.
+--content
+
+<p>
+<a href="https://mypy.readthedocs.io/en/stable/index.html">Mypy</a> is a nifty static type checker for Python
+that will help you nip nasty production bugs in the bud. Especially when you're already in the habit of generously
+using type hints in your code.
+Head over to <a href="https://mypy.readthedocs.io/en/stable/getting_started.html">their docs</a> to get started if
+you're not using Mypy already.
+</p>
+
+<p>
+Mypy <em>is</em> kind of slow though. On a code base of 200 Python files it already takes 2 seconds to
+check the code. Luckily there's a quick fix! You can run Mypy in daemon mode, and it will (partially) cache previous
+run results and be up to 20 times faster 🚀
+</p>
+
+To speed things up, just change the Mypy command from `mypy &lt;arguments> &lt;file(s)>` like this:
+
+```
+mypy --check-untyped-defs hello_world.py
+```
+
+To `dmypy -- &lt;arguments> &lt;file(s)>` like this:
+
+```
+dmypy -- --check-untyped-defs hello_world.py
+```
+
+The first time you run the command in daemon mode, it will still be slow as it needs to generate the cached data.
+Subsequent calls will be much faster though. For the ~200 file code base down from 2 seconds to 0.1.
+
+<br/>
+<br/>
