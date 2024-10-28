@@ -31,7 +31,7 @@ dmypy run -- --check-untyped-defs hello_world.py
 ```
 
 The first time you run the command in daemon mode, it will still be slow as it needs to generate the cached data.
-Subsequent calls will be much faster though. For the ~200 file code base down from 2 seconds to 0.1.
+Subsequent calls will be much faster though. For the 200 file code base the run time went down from 2 seconds to just 100ms.
 
 <br/>
 <br/>
