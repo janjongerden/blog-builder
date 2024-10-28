@@ -63,3 +63,8 @@ input[type="submit"] {
 h2 {
     font-size: 3.5rem;
 }
+pre > code {
+    /* Necessary for the background color to cover the whole code, also after horizontal scrolling */
+    display: inline-block;
+    min-width: 96%;
+}
