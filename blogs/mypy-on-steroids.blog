@@ -24,10 +24,10 @@ To speed things up, just change the Mypy command from `mypy &lt;arguments> &lt;f
 mypy --check-untyped-defs hello_world.py
 ```
 
-To `dmypy -- &lt;arguments> &lt;file(s)>` like this:
+To `dmypy run -- &lt;arguments> &lt;file(s)>` like this:
 
 ```
-dmypy -- --check-untyped-defs hello_world.py
+dmypy run -- --check-untyped-defs hello_world.py
 ```
 
 The first time you run the command in daemon mode, it will still be slow as it needs to generate the cached data.
