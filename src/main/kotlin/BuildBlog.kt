@@ -181,7 +181,9 @@ fun replaceTripleBackticksWithCodeTags(text: String): String {
     }
     var replacement = text
     while (replacement.contains("```")) {
-        replacement = replacement.replaceFirst("```", "<pre><code>")
+        // replacing the newline prevents a leading empty line in code blocks
+        // weird thing is that the `\\s` part is needed: it is not in the original input?
+        replacement = replacement.replaceFirst(Regex("```\\s+\n"), "<pre><code>")
         replacement = replacement.replaceFirst("```", "</code></pre>")
     }
     return replacement
