@@ -50,6 +50,7 @@ code {
     background: #b9eafa;
     background: black;
     padding: 4px;
+    padding-top: 8px;
     margin-right: 4px;
 }
 input[type="submit"] {
@@ -62,6 +63,9 @@ input[type="submit"] {
 }
 .blogList {
     max-width: 500px;
+}
+.articleTags {
+    padding: 10px 0 0 20px;
 }
 .articleDescription {
     padding: 10px 0 0 20px;
@@ -87,4 +91,8 @@ html, body {
 .footerMenu > .menuItem {
     padding-left: 22px;
     margin-left: auto;
+}
+.tagLink {
+    font-size: larger;
+    font-weight: bold;
 }

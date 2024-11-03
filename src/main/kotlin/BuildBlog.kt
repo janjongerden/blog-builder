@@ -142,7 +142,7 @@ fun enrichTemplate(content: String, blog: BlogElement): String {
         val relatedBlogs = getRelatedBlogs(blog)
         var relatedBlogList = ""
         if (relatedBlogs.isNotEmpty()) {
-            relatedBlogList = "<span class=related>related blogs:</span><br/>" + generateBlogList(relatedBlogs)
+            relatedBlogList = "<span class=related>related blogs:</span><br/><br/>" + generateBlogList(relatedBlogs, includeTags = false)
         }
         enriched = enriched.replace(RELATED_BLOGS, relatedBlogList)
     }
@@ -212,17 +212,19 @@ fun getRelatedBlogs(blog: BlogElement): Collection<BlogArticle> {
         .take(3)
 }
 
-fun generateBlogList(blogArticles: Collection<BlogArticle>): String {
+fun generateBlogList(blogArticles: Collection<BlogArticle>, includeTags: Boolean = true): String {
     var html = "<ul class=blogList>"
     blogArticles.filter { blog -> blog.isListable() }
         .sortedByDescending { blog -> blog.getDate() }
         .forEach { blog ->
             run {
+                val tagsDiv = if (includeTags) "<div class=articleTags>${generateTags(blog.getTags())}</div>" else ""
                 html +=
                     """
                     <li>
-                        <a href="${blog.getHtmlFileName()}">${blog.getProperty(TITLE)}</a>
+                        <a class=tagLink href="${blog.getHtmlFileName()}">${blog.getProperty(TITLE)}</a>
                         <div class=articleDescription>${blog.getProperty(DESCRIPTION)}</div>
+                        $tagsDiv
                     </li>
                     """
             }
