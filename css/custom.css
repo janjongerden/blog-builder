@@ -1,12 +1,19 @@
 .menu {
-    font-size: 3.4rem;
     font-weight: 700;
     width: 100%;
     padding-top: 10px;
+    background-color: #e5e5f7;
+}
+.headerMenu {
+    font-size: 3.4rem;
     border-bottom-color: #110ae6;
     border-bottom-style: solid;
     margin-bottom: 20px;
-    background-color: #e5e5f7;
+}
+.footerMenu {
+    font-size: 2.5rem;
+    border-top-color: #110ae6;
+    border-top-style: solid;
 }
 a {
     color: #110ae6;
@@ -67,4 +74,17 @@ pre > code {
     /* Necessary for the background color to cover the whole code, also after horizontal scrolling */
     display: inline-block;
     min-width: 96%;
+}
+html, body {
+    /* Needed together with .container css to push the footer to the bottom of the page on shorter pages. */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    flex: 1;
+}
+.footerMenu > .menuItem {
+    padding-left: 22px;
+    margin-left: auto;
 }

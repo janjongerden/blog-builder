@@ -1,11 +1,16 @@
-title=Jan Jongerden
+title=Jan's weblog
 show_in_blog_list=false
 description=The home page of my blog with a list of recent blog posts.
 --content
-Here I occasionally write a blog post.
+Welcome to my weblog where I occasionally write a blog post.
 Typical topics are programming, little life hacks or other nerdy things. 
 
 <br />
+<br />
+If you have something to share with me, you can reach out to me on <a href="contact.html">the contact page</a>.
+<br />
+<br />
+Here's a list of my most recent blog posts:
 <br />
 <br />
 ${blog_listing}

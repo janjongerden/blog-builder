@@ -2,5 +2,8 @@ ${article_tags}
 ${related_blogs}
 </article>
 </div>
+<footer class="menu footerMenu">
+    <a href="contact.html" class=menuItem>contact</a>
+</footer>
 </body>
 </html>

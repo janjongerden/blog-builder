@@ -15,9 +15,8 @@
     ${roach_js}
 </head>
 <body>
-<header class=menu>
-    <a href="index.html" class=menuItem>HOME</a>
-    <a href="contact.html" class=menuItem>CONTACT</a>
+<header class="menu headerMenu">
+    <a href="index.html" class=menuItem>jan jongerden</a>
 </header>
 <div class=container>
 <article>
