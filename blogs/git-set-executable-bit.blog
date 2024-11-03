@@ -1,7 +1,7 @@
 title=Git commit a permission bit
 date=2024-10-22
 tags=git,linux
-description=How to commit a change in file permission bits in git
+description=How to commit a change in file permission bits in git.
 --content
 <p>
   When the file permission bits of a script in git are missing the executable bit, you can't directly execute

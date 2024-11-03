@@ -1,7 +1,7 @@
 title=Venving like a pro
 date=2024-09-27
 tags=bash,python
-description=Automating Python virtual environment switching and setup in the linux command shell
+description=Automating Python virtual environment switching and setup in the linux command shell.
 --content
 <p>
   <strong>TL;DR</strong> Add the code at the bottom of this page to your `.zshrc` or `.bashrc` and from now on

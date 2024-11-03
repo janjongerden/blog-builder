@@ -14,6 +14,7 @@
     font-size: 2.5rem;
     border-top-color: #110ae6;
     border-top-style: solid;
+    padding-bottom: 10px;
 }
 a {
     color: #110ae6;
@@ -95,4 +96,7 @@ html, body {
 .tagLink {
     font-size: larger;
     font-weight: bold;
+}
+h1 {
+    font-weight: 600;
 }
