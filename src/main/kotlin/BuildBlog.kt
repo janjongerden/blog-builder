@@ -39,10 +39,11 @@ fun main() {
 fun copyStaticFiles() {
     cssFileNames = copyAndHashStaticDir("css/")
     copyAndHashStaticDir("img/", false)
-    jsFileNames = copyAndHashStaticDir("js/")
+    // prettify checks its own name, and I don't expect to change it, so no need for hashing
+    jsFileNames = copyAndHashStaticDir("js/", excludeFiles = listOf("run_prettify.js"))
 }
 
-fun copyAndHashStaticDir(dirName: String, hashNames: Boolean = true): Map<String, String> {
+fun copyAndHashStaticDir(dirName: String, hashNames: Boolean = true, excludeFiles: List<String> = ArrayList()): Map<String, String> {
 
     val targetDirName = outputDir + dirName
 
@@ -55,7 +56,7 @@ fun copyAndHashStaticDir(dirName: String, hashNames: Boolean = true): Map<String
                     println("copying '$file'")
                     val source = File(dirName + file.name)
                     val targetFileName:String
-                    if (hashNames) {
+                    if (hashNames && !excludeFiles.contains(file.name)) {
                         val hashedName = hash(source)
                         targetFileName = targetDirName + hashedName
                         hashedNames[dirName + file.fileName] = dirName + hashedName
