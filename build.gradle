@@ -1,6 +1,7 @@
-plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.5.32'
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.0.21'
     id 'application'
 }
 
@@ -10,15 +11,14 @@ repositories {
 }
 
 dependencies {
-    implementation platform('org.jetbrains.kotlin:kotlin-bom')
+//    implementation platform('org.jetbrains.kotlin:kotlin-bom')
+//    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation 'com.google.guava:guava:32.0.0-android'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.0.21'
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-
-    implementation 'com.google.guava:guava:30.1.1-jre'
-
-    testImplementation 'org.jetbrains.kotlin:kotlin-test'
-
-    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit:2.0.21'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 java {
@@ -26,12 +26,16 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+tasks.withType(KotlinCompile).configureEach {
     kotlinOptions {
         jvmTarget = "11"
     }
 }
 
+tasks.test {
+    useJUnitPlatform()
+}
+
 application {
-    mainClass = 'src.main.kotlin.BuildBlogKt'
+    mainClass = 'BuildBlogKt'
 }

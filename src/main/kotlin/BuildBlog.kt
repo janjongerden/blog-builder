@@ -1,19 +1,19 @@
-package src.main.kotlin
-
 import Props.DESCRIPTION
 import Props.TITLE
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import ReplacementUtils.Companion.replaceInlineBackticksWithCodeTags
+import ReplacementUtils.Companion.replaceTripleBackticksWithCodeTags
 import kotlin.io.path.isDirectory
 import kotlin.io.path.name
 import kotlin.math.abs
 
-private const val BLOG_LISTING:String = "\${blog_listing}"
-private const val RELATED_BLOGS:String = "\${related_blogs}"
-private const val ARTICLE_TAGS:String = "\${article_tags}"
-private const val ROACH_JS:String = "\${roach_js}"
+private const val BLOG_LISTING: String = "\${blog_listing}"
+private const val RELATED_BLOGS: String = "\${related_blogs}"
+private const val ARTICLE_TAGS: String = "\${article_tags}"
+private const val ROACH_JS: String = "\${roach_js}"
 private const val outputDir: String = "/tmp/bloggin/"
 private val head = readFile("templates/head.template")
 private val bottom = readFile("templates/bottom.template")
@@ -55,7 +55,7 @@ fun copyAndHashStaticDir(dirName: String, hashNames: Boolean = true, excludeFile
                 run {
                     println("copying '$file'")
                     val source = File(dirName + file.name)
-                    val targetFileName:String
+                    val targetFileName: String
                     if (hashNames && !excludeFiles.contains(file.name)) {
                         val hashedName = hash(source)
                         targetFileName = targetDirName + hashedName
@@ -110,13 +110,13 @@ fun generateTagPages() {
         .toSet()
 
     tags.forEach { tag ->
-        val file = File("${outputDir}/tag_${tag}.html")
+        val file = File("$outputDir/tag_${tag}.html")
 
         file.createNewFile()
 
         val tagPage = TagPage(tag)
 
-        val relatedBlogs = blogArticles.filter{blogArticle -> blogArticle.getTags().contains(tag) }
+        val relatedBlogs = blogArticles.filter{ blogArticle -> blogArticle.getTags().contains(tag) }
 
         val relatedBlogList = generateBlogList(relatedBlogs)
 
@@ -143,7 +143,10 @@ fun enrichTemplate(content: String, blog: BlogElement): String {
         val relatedBlogs = getRelatedBlogs(blog)
         var relatedBlogList = ""
         if (relatedBlogs.isNotEmpty()) {
-            relatedBlogList = "<span class=related>related blogs:</span><br/><br/>" + generateBlogList(relatedBlogs, includeTags = false)
+            relatedBlogList = "<span class=related>related blogs:</span><br/><br/>" + generateBlogList(
+                relatedBlogs,
+                includeTags = false
+            )
         }
         enriched = enriched.replace(RELATED_BLOGS, relatedBlogList)
     }
@@ -173,44 +176,13 @@ fun enrichTemplate(content: String, blog: BlogElement): String {
     return enriched
 }
 
-fun replaceTripleBackticksWithCodeTags(text: String): String {
-    val count = countSubstringInString(text, "```")
-    if (count == 0) {
-        return text
-    } else if (count % 2 == 1) {
-        throw IllegalArgumentException("The text contains an odd number of triple backticks! (${count} occurrences)")
-    }
-    var replacement = text
-    while (replacement.contains("```")) {
-        // replacing the newline prevents a leading empty line in code blocks
-        // weird thing is that the `\\s` part is needed: it is not in the original input?
-        replacement = replacement.replaceFirst(Regex("```\\s+\n"), "<pre><code>")
-        replacement = replacement.replaceFirst("```", "</code></pre>")
-    }
-    return replacement
-}
-
-fun replaceInlineBackticksWithCodeTags(text: String): String {
-    val count = text.count { it == '`' }
-    if (count == 0) {
-        return text
-    } else if (count % 2 == 1) {
-        throw IllegalArgumentException("The text contains an odd number of backticks! (${count} occurrences)")
-    }
-    var replacement = text
-    while (replacement.contains("`")) {
-        replacement = replacement.replaceFirst("`", "<code>")
-        replacement = replacement.replaceFirst("`", "</code>")
-    }
-    return replacement
-}
-
 fun getRelatedBlogs(blog: BlogElement): Collection<BlogArticle> {
     val tags = blog.getTags()
     if (tags.isEmpty()) {
         return emptyList()
     }
-    return blogArticles.filter { b -> b != blog}
+    return blogArticles
+        .filter { b -> b != blog}
         .filter { b -> b.getTags().intersect(tags).isNotEmpty() }
         .take(3)
 }

@@ -1,5 +1,3 @@
-package src.main.kotlin
-
 abstract class BlogElement {
 
     abstract fun getProperty(tag: String): String

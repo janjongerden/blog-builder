@@ -1,14 +1,8 @@
-package src.main.kotlin
-
 class TagPage(tagName: String) : BlogElement() {
 
-    private val props: Map<String, String>
-
-    init {
-        props = mapOf(
-            "title" to "Blogs tagged '$tagName'",
-        )
-    }
+    private val props: Map<String, String> = mapOf(
+        "title" to "Blogs tagged '$tagName'",
+    )
 
     override fun getProperty(tag: String): String {
         return props.getOrDefault(tag, "")

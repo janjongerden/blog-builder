@@ -1,5 +1,3 @@
-package src.main.kotlin
-
 fun generateTags(tags: Collection<String>): String {
     if (tags.isEmpty()) {
         return ""
