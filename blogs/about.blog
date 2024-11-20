@@ -12,8 +12,8 @@ also finds something worthwhile to read.
 Most of my blog posts are of a technical nature. I write things down to preserve a piece of knowledge or
 nifty hack I learned about. Writing often helps me clear my thoughts and better understand a problem.
 On the other hand an article may help someone to solve a hard-to-google problem like
-<a href="https://janjongerden.nl/blog/scanning-samsung-4600.html">getting my scanner to work</a>, or the page
-is a way to share a list of <a href="https://janjongerden.nl/blog/berlin-restaurants.html">my favorite
+<a href="https://janjongerden.nl/blog/scanning-samsung-4600.html">getting my scanner to work</a>, or a page
+can be a way to share a list of <a href="https://janjongerden.nl/blog/berlin-restaurants.html">my favorite
 restaurants in Berlin</a> with a friend about to visit that city.
 <br/>
 <br/>
@@ -35,7 +35,7 @@ at it. So this website is also a way for me to get better at writing. Or die try
 I know you should never roll your selfmade, half-baked solution for a problem that has been solved a gazillion times
 before, by smarter people, that wrote well-tested and feature-complete software they let you use for free.
 However, hobby projects are a nice exception to this rule, and it was fun to write a super simple static page
-generator for this blog in Kotlin.
+generator in Kotlin for this blog.
 <br/>
 <br/>
 
