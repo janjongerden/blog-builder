@@ -4,6 +4,7 @@ ${related_blogs}
 </div>
 <footer class="menu footerMenu">
     <a href="contact.html" class=menuItem>contact</a>
+    <a href="about.html" class=menuItem>about</a>
 </footer>
 </body>
 </html>

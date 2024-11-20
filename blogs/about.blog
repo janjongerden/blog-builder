@@ -1,0 +1,54 @@
+title=About janjongerden.nl
+show_in_blog_list=false
+description=About this website, its content and its owner.
+--content
+
+I created this website mostly for my own pleasure, and hopefully sometimes a visiting friend or stranger
+also finds something worthwhile to read.
+<br/>
+<br/>
+
+<h2>Share ideas, knowledge, or technical solutions</h2>
+Most of my blog posts are of a technical nature. I write things down to preserve a piece of knowledge or
+nifty hack I learned about. Writing often helps me clear my thoughts and better understand a problem.
+On the other hand an article may help someone to solve a hard-to-google problem like
+<a href="https://janjongerden.nl/blog/scanning-samsung-4600.html">getting my scanner to work</a>, or the page
+is a way to share a list of <a href="https://janjongerden.nl/blog/berlin-restaurants.html">my favorite
+restaurants in Berlin</a> with a friend about to visit that city.
+<br/>
+<br/>
+
+<h2>Write for fun and profit</h2>
+In software engineering, writing skills are essential. The things you have to write range from multipage architecture
+documents or project proposals to user guides or feature requests. At the smallest scale you write a comment in the code,
+think up the proper name for a variable, or write a concise pull request description.
+<br/>
+<br/>
+
+What I am trying to say is that, as with all skills, except Russian roulette, the more you practice, the better you get
+at it. So this website is also a way for me to get better at writing. Or die trying, just like in Russian roulette.
+
+<br/>
+<br/>
+
+<h2>Write blogging software</h2>
+I know you should never roll your selfmade, half-baked solution for a problem that has been solved a gazillion times
+before, by smarter people, that wrote well-tested and feature-complete software they let you use for free.
+However, hobby projects are a nice exception to this rule, and it was fun to write a super simple static page
+generator for this blog in Kotlin.
+<br/>
+<br/>
+
+The current state of the code is on the sloppy side, but it gets the job done. As it is my very own blog, I am
+confidently awaiting any lawsuits. To add insult to injury, I mixed the blog software and content into
+<a href="https://github.com/janjongerden/blog-builder">one big
+GitHub repository</a>.
+
+<br/>
+<br/>
+
+<h2>About me</h2>
+I am Jan, and have been writing software professionally since the late 19hundreds, and still like creating software to
+solve problems for customers, friends, or myself. I studied computer science in Delft, the city where I live to this day.
+<br/>
+<br/>
