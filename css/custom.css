@@ -100,3 +100,6 @@ html, body {
 h1 {
     font-weight: 600;
 }
+img {
+    max-width: 100%;
+}
