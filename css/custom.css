@@ -50,8 +50,11 @@ code {
 .tagItem {
     background: #b9eafa;
     background: black;
-    padding: 4px;
-    padding-top: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 12px;
     margin-right: 4px;
 }
 input[type="submit"] {
