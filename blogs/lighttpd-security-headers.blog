@@ -36,7 +36,7 @@ Some problems you may run into:
         is applied? This won't work, as contrary to the name, it <em>replaces</em> instead of <em>adds</em> the headers.
         so you have to add all headers you want in one go.</li>
     <li><strong>Headers show up fine, but website is broken.</strong> You may have made the config too strict. Try loosening the
-        rules up a bit. Likely suspects: the Content-Security-Policy and HSTS headers. Try disabling these rules temporarily</li>
+        rules up a bit. Likely suspects: the Content-Security-Policy and HSTS headers. Try disabling these rules temporarily.</li>
     <li><strong>Weird things still happen.</strong> Check the browser console, syslog, and lighttpd log files for clues.</li>
 </ul>
 
