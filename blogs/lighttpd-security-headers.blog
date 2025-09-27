@@ -36,7 +36,7 @@ Some problems you may run into:
         is applied? This won't work, as contrary to the name, it <em>replaces</em> instead of <em>adds</em> the headers.
         so you have to add all headers you want in one go.</li>
     <li><strong>Headers show up fine, but website is broken.</strong> You may have made the config too strict. Try loosening the
-        rules up a bit. Likely suspects: the CSP and HSTS headers.</li>
+        rules up a bit. Likely suspects: the Content-Security-Policy and HSTS headers. Try disabling these rules temporarily</li>
     <li><strong>Weird things still happen.</strong> Check the browser console, syslog, and lighttpd log files for clues.</li>
 </ul>
 
@@ -78,6 +78,9 @@ should remember this, in second. For a year, use 31536000.
 <h2>Content-Security-Policy</h2>
 The <code>Content-Security-Policy</code> or CSP header tells the browser which sources are okay to load content from.
 This can stop maliciously injected content from being fetched by the browser. Can be specified per resource type.
+This setting is somewhat notorious for breaking website functionality, such as Nextcloud.
+Make sure to include exceptions for external content you want to allow (e.g. `https://fonts.googleapis.com`,
+or CDN content), or disable the setting altogether to see if this fixes any problems you encounter.
 
 <br/>
 <br/>
@@ -90,7 +93,7 @@ Whether this webpage can be put in a frame. Turning this off helps prevent
 <h2>X-Content-Type-Options</h2>
 This modifies the browsers behavior to "guesstimate" the type of content it is being served. This can be abused
 in some hacking scenarios, so better turn it off by setting it to "nosniff", where no assumptions are made and
-the only the <code>Content-type</code> header is respected.
+only the <code>Content-type</code> header is respected.
 
 <br/>
 <br/>
